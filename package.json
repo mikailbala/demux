@@ -1,0 +1,48 @@
+{
+  "name": "demux",
+  "version": "0.2.0",
+  "description": "Interactive CLI for Illumina BCL-convert demultiplexing on HPC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikailbala/demux.git"
+  },
+  "homepage": "https://github.com/mikailbala/demux#readme",
+  "bugs": {
+    "url": "https://github.com/mikailbala/demux/issues"
+  },
+  "type": "module",
+  "bin": {
+    "demux": "./dist/demux.mjs"
+  },
+  "main": "./dist/demux.mjs",
+  "files": [
+    "dist",
+    "bootstrap.sh",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node src/bin/demux.js",
+    "test": "node --test --test-reporter=spec",
+    "prepare": "node build.mjs"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.0.0",
+    "chalk": "^5.3.0",
+    "cli-progress": "^3.12.0",
+    "cli-table3": "^0.6.5",
+    "columnify": "^1.6.0",
+    "commander": "^12.1.0",
+    "csv-parse": "^5.5.6",
+    "csv-stringify": "^6.5.2",
+    "fast-xml-parser": "^4.5.0",
+    "log-update": "^6.1.0",
+    "ora": "^8.1.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}
