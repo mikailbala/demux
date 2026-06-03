@@ -1,270 +1,595 @@
 # demux
 
-Interactive CLI for Illumina BCL-convert demultiplexing on HPC.
+Interactive CLI for Illumina BCL-convert demultiplexing on HPC. Walks you through every decision (which samples, which cycles, which indices to reverse-complement, which `bcl-convert` to use, what to rescue from `TopUnknownBarcodes.csv`), produces a clean `SampleSheet.csv` and either an `sbatch` script or an inline `bcl-convert` run.
 
-Wraps the judgment-heavy parts of your manual workflow — filtering samples, choosing override cycles, deciding reverse-complement, rescuing missing indices from `TopUnknownBarcodes.csv`, and picking the right `bcl-convert` binary — into one walkthrough that emits either an `sbatch` script or runs `bcl-convert` inline.
+---
 
-```
-demux init <rundir>            # fresh demux: walk through prompts, emit sbatch + samplesheet
-demux init <rundir> --run      # ...or run bcl-convert directly in the current session
-demux run  <run-state-dir>     # run bcl-convert against an already-generated state dir
-demux rescue <prev-state-dir>  # re-run after first demux, rescue from TopUnknownBarcodes.csv
-demux status <state-dir>       # show decisions + artifact paths for a state dir
-```
+## TL;DR
 
-## Install (HPC)
-
-### One-time Node + npm setup
-
-On an interactive node:
+If you already have demux installed:
 
 ```bash
-# Node binary off Lustre (nodeenv was broken on at least one site)
-curl -fsSL https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz -o ~/node.tar.xz
-mkdir -p /tmp/$USER && tar -xf ~/node.tar.xz -C /tmp/$USER
-mv /tmp/$USER/node-v20.18.0-linux-x64 /tmp/$USER/demux-node
-cp -r /tmp/$USER/demux-node ~/demux-node-stash    # persistent copy on home/Lustre
+source ~/src/demux-activate
+demux init /path/to/illumina/run-dir --run     # inline interactive run
+# or omit --run and submit the sbatch yourself:
+demux init /path/to/illumina/run-dir
+sbatch ./<run-id>/demux.sbatch
+```
 
-cat > ~/demux-activate <<'EOF'
+Pick up an earlier session: `demux status ./<run-id>`. Rescue with `demux rescue ./<run-id>`.
+
+---
+
+## Table of contents
+
+1. [First-time HPC setup](#first-time-hpc-setup)
+2. [Per-session activation](#per-session-activation)
+3. [Updating demux](#updating-demux)
+4. [Commands](#commands)
+5. [What `init` actually does](#what-init-actually-does)
+6. [bcl-convert: how it's selected](#bcl-convert-how-its-selected)
+7. [Override cycles: global vs per-lane](#override-cycles-global-vs-per-lane)
+8. [Settings stripping](#settings-stripping)
+9. [Index rescue from `TopUnknownBarcodes.csv`](#index-rescue-from-topunknownbarcodescsv)
+10. [State directory layout](#state-directory-layout)
+11. [Sbatch script](#sbatch-script)
+12. [Common errors](#common-errors)
+13. [Troubleshooting](#troubleshooting)
+14. [Development (laptop side)](#development-laptop-side)
+15. [Repo layout](#repo-layout)
+
+---
+
+## First-time HPC setup
+
+Once per user on the HPC. Run on an **interactive node** (Node.js isn't available on login nodes).
+
+### 1. Stage Node 20
+
+```bash
+# get an interactive session, whichever your site uses:
+srun --pty --time=2:00:00 --mem=4G --cpus-per-task=2 bash
+
+# fetch Node 20.18.0 prebuilt and stash it persistently on $HOME
+curl -fsSL https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz -o /tmp/node.tar.xz
+mkdir -p /tmp/$USER
+tar -xf /tmp/node.tar.xz -C /tmp/$USER
+mv /tmp/$USER/node-v20.18.0-linux-x64 /tmp/$USER/demux-node
+mkdir -p ~/src
+cp -r /tmp/$USER/demux-node ~/src/demux-node-stash
+rm /tmp/node.tar.xz
+```
+
+Why `/tmp` and a `~/src/demux-node-stash` copy: on Lustre, Node's JIT mmap can fail and `npm` atomic-rename misbehaves. We run from `/tmp` (node-local, fast) and re-stage from the home-dir stash if `/tmp` was wiped between sessions.
+
+### 2. Create the activate script
+
+```bash
+cat > ~/src/demux-activate <<'EOF'
+# Restage Node from stash if /tmp was wiped
 LOCAL_NODE=/tmp/$USER/demux-node
+STASH=$HOME/src/demux-node-stash
 if [ ! -x "$LOCAL_NODE/bin/node" ]; then
+  if [ ! -x "$STASH/bin/node" ]; then
+    echo "✖ no Node stash at $STASH — see README 'First-time HPC setup'"
+    return 1 2>/dev/null || exit 1
+  fi
   mkdir -p "$(dirname "$LOCAL_NODE")"
-  cp -r $HOME/demux-node-stash "$LOCAL_NODE"
+  cp -r "$STASH" "$LOCAL_NODE"
 fi
+
+# npm config off Lustre
 export NPM_CONFIG_CACHE=/tmp/$USER/npm-cache
-export NPM_CONFIG_PREFIX=$HOME/demux-npm-prefix
+export NPM_CONFIG_PREFIX=/tmp/$USER/demux-npm-prefix
 export NPM_CONFIG_UPDATE_NOTIFIER=false NPM_CONFIG_FUND=false NPM_CONFIG_AUDIT=false
 mkdir -p "$NPM_CONFIG_CACHE" "$NPM_CONFIG_PREFIX"
 export PATH="$LOCAL_NODE/bin:$NPM_CONFIG_PREFIX/bin:$PATH"
+
+# Install demux from a release TARBALL (not git+, which has a symlink bug).
+#   demux-update            → latest release
+#   demux-update v0.2.3     → specific tagged release
+demux-update() {
+  local ref="${1:-latest}"
+  local url
+  if [ "$ref" = "latest" ] || [ "$ref" = "main" ]; then
+    echo "› resolving latest release…"
+    url=$(curl -fsSL "https://api.github.com/repos/mikailbala/demux/releases/latest" \
+      | grep -o '"browser_download_url":[[:space:]]*"[^"]*demux-[^"]*\.tgz"' \
+      | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+    [ -z "$url" ] && { echo "✖ could not resolve latest release URL"; return 1; }
+  else
+    local v="${ref#v}"
+    url="https://github.com/mikailbala/demux/releases/download/v${v}/demux-${v}.tgz"
+  fi
+  echo "› downloading $url"
+  curl -fsSL "$url" -o /tmp/demux.tgz || { echo "✖ download failed"; return 1; }
+  echo "› clearing stale install state…"
+  rm -rf "$NPM_CONFIG_PREFIX/lib/node_modules/.demux-"* \
+         "$NPM_CONFIG_PREFIX/lib/node_modules/demux" \
+         "$NPM_CONFIG_PREFIX/bin/demux"
+  echo "› installing from tarball…"
+  npm install -g /tmp/demux.tgz --no-audit --no-fund || { echo "✖ npm install failed"; return 1; }
+  rm -f /tmp/demux.tgz
+  if [ -e "$NPM_CONFIG_PREFIX/lib/node_modules/demux/dist/demux.mjs" ] \
+     && [ -x "$NPM_CONFIG_PREFIX/bin/demux" ]; then
+    echo "✔ demux $(demux --version) ready"
+  else
+    echo "✖ install completed but files are missing"
+    return 1
+  fi
+}
+
+# auto-install on first activate (or if a previous install left a dangling symlink)
+if ! command -v demux >/dev/null 2>&1 \
+   || ! [ -e "$(readlink -f "$(command -v demux 2>/dev/null)")" ]; then
+  echo "demux not found (or dangling) — installing latest release…"
+  demux-update latest
+fi
 EOF
 ```
 
-### Install demux
+### 3. Optional: add a shell alias
 
 ```bash
-source ~/demux-activate
+echo "alias demux-on='source ~/src/demux-activate'" >> ~/.bashrc
+```
 
-# install latest from GitHub main
-npm install -g git+https://github.com/mikailbala/demux.git
+Then every new session: `demux-on`.
 
-# OR a specific tagged release
-npm install -g git+https://github.com/mikailbala/demux.git#v0.2.0
+### 4. First activation
 
-# OR from a release tarball (no git on HPC required)
-curl -fsSL https://github.com/mikailbala/demux/releases/latest/download/demux-0.2.0.tgz -o /tmp/demux.tgz
-npm install -g /tmp/demux.tgz
-
+```bash
+source ~/src/demux-activate
 demux --version
 ```
 
-To update, re-run the same `npm install -g git+...` command — npm refetches and rebuilds.
+---
 
-Per new interactive session: `source ~/demux-activate`.
+## Per-session activation
 
-## Commands & options
+Every new interactive session:
 
-### Global
-
+```bash
+source ~/src/demux-activate      # or `demux-on` if you set the alias
 ```
-demux --help
-demux --version
+
+This:
+- Restages Node to `/tmp/$USER/demux-node` from `~/src/demux-node-stash` if it's gone.
+- Sets `NPM_CONFIG_CACHE` and `NPM_CONFIG_PREFIX` to `/tmp/$USER/...` (Lustre-safe).
+- Puts demux on PATH.
+- Auto-installs the latest release if `demux` is missing or its symlink is dangling.
+
+No outbound network needed unless `demux` is missing.
+
+---
+
+## Updating demux
+
+```bash
+demux-update             # latest GitHub release
+demux-update v0.2.5      # specific tagged release
 ```
+
+The function nukes the existing install, downloads the release tarball, and reinstalls. Always use this — don't run `npm install -g git+...` directly (npm has a bug where it symlinks instead of installing, leaving a dangling link).
+
+---
+
+## Commands
 
 ### `demux init <rundir>`
 
-Walks through 8 steps: parse → bcl-convert pick → sample filter → override cycles → reverse-complement → optional rescue → review → write.
+Fresh demux. Walks through every decision; emits a clean `SampleSheet.csv` plus either an `sbatch` script or runs `bcl-convert` inline.
 
 | Flag | Description |
 |---|---|
-| `-s, --samplesheet <path>` | Override samplesheet path (defaults to `<rundir>/SampleSheet.csv`) |
-| `-u, --top-unknown <path>` | Inline rescue against a `TopUnknownBarcodes.csv` from a prior demux |
-| `-n, --match-len <n>` | Prefix-match length for rescue. Default `8` |
-| `--bcl-convert <path>` | Skip the bcl-convert pick prompt; use this path |
-| `--run` | After writing, run `bcl-convert` inline instead of emitting an sbatch script |
-| `--threads <n>` | Thread count when `--run` is set. Default: `$SLURM_CPUS_PER_TASK` then `nproc-1` |
-| `--force` | When `--run` is set, delete an existing `demux_out/` without prompting |
-| `--drop-settings <list>` | Comma-separated BCLConvert_Settings keys to strip in addition to the built-in known-bad list |
-| `--keep-all-settings` | Disable settings stripping entirely (you accept whatever bcl-convert says) |
+| `<rundir>` (positional) | Path to the Illumina run dir (the one containing `RunInfo.xml` + `SampleSheet.csv`). |
+| `-s, --samplesheet <path>` | Use a samplesheet from a different path (defaults to `<rundir>/SampleSheet.csv`). |
+| `-u, --top-unknown <path>` | Path to `TopUnknownBarcodes.csv` from a prior demux, for inline index rescue during this `init`. |
+| `-n, --match-len <n>` | Prefix-match length for rescue (default `8`). |
+| `--run` | After generating the samplesheet, run `bcl-convert` inline (foreground, tee'd to logs) instead of emitting an sbatch script. |
+| `--threads <n>` | Threads passed to bcl-convert when `--run` is set. Defaults to `$SLURM_CPUS_PER_TASK` then `nproc-1`. |
+| `--bcl-convert <path>` | Explicit path to the `bcl-convert` binary; skips discovery + prompt. Also see `DEMUX_BCL_CONVERT` env var. |
+| `--force` | With `--run`, delete an existing `demux_out/` without prompting. |
+| `--drop-settings <list>` | Comma-separated additional `[BCLConvert_Settings]` keys to strip from the generated sheet. |
+| `--keep-all-settings` | Don't strip any `[BCLConvert_Settings]` keys at all (turns off both built-in known-bad and UMI-conditional stripping). |
 
-### `demux rescue <prev-state-dir>`
+Example:
 
-Reads the previous run's `.demux/decisions.json` + its `Reports/TopUnknownBarcodes.csv`, prefix-matches against the existing samplesheet, lets you pick substitutions, and emits a sibling state dir `<prev>-rescue-N/`.
+```bash
+# basic
+demux init /lustre/scratch/runs/250515_LH00954_0008_A23K3HCLT3
+
+# inline run with a specific bcl-convert and 32 threads
+demux init /path/to/run --run --bcl-convert ~/bin/bclConvert4.5.4/usr/bin/bcl-convert --threads 32
+
+# strip an extra setting bcl-convert complained about
+demux init /path/to/run --drop-settings BarcodeMismatchesIndex1
+```
+
+### `demux rescue <prev-run-dir>`
+
+After the first demux, look at `Reports/TopUnknownBarcodes.csv` and rescue samples whose real barcodes drifted from what's in the samplesheet (e.g., index prep error). Reuses the prior run's filter + RC decisions; only asks about substitutions.
 
 | Flag | Description |
 |---|---|
-| `-u, --top-unknown <path>` | Override the discovered TopUnknownBarcodes.csv path |
-| `-n, --match-len <n>` | Prefix-match length. Default: same as the prev run |
-| `--bcl-convert <path>` | Override which bcl-convert to use |
-| `--run` | Run bcl-convert inline after writing the rescue state dir |
-| `--threads <n>` | Thread count when `--run` is set |
-| `--force` | When `--run` is set, delete an existing `demux_out/` without prompting |
+| `<prev-run-dir>` (positional) | A directory created by `demux init` (it contains a `.demux/` subdir). |
+| `-u, --top-unknown <path>` | Override the auto-discovered TopUnknownBarcodes.csv path. |
+| `-n, --match-len <n>` | Prefix-match length (default: same as the prior run). |
+| `--run` | Run bcl-convert inline against the new state dir after writing it. |
+| `--threads <n>` | Same as `init`. |
+| `--bcl-convert <path>` | Same as `init`. |
+| `--force` | Same as `init`. |
 
-### `demux run <run-state-dir>`
+Output goes to `./<prev-run-id>-rescue-<n>/`.
 
-Runs bcl-convert in the foreground against an already-generated state dir. Tees stdout/stderr to console and to `.demux/bcl-convert.{stdout,stderr}.log`. Forwards Ctrl-C. Reports duration + exit code.
+### `demux run <run-dir>`
+
+Run bcl-convert against an existing state dir (one created by `init` or `rescue`). Tees stdout/stderr to the console **and** to `.demux/bcl-convert.{stdout,stderr}.log`. Forwards Ctrl-C cleanly.
 
 | Flag | Description |
 |---|---|
-| `--bcl-convert <path>` | Override which bcl-convert to use (else uses what `init` recorded) |
-| `--threads <n>` | Thread count. Default: `$SLURM_CPUS_PER_TASK` then `nproc-1` |
-| `--force` | Delete an existing `demux_out/` without prompting |
+| `<run-dir>` (positional) | A state dir from `init` or `rescue`. |
+| `--threads <n>` | Threads. Defaults to `$SLURM_CPUS_PER_TASK` then `nproc-1`. |
+| `--bcl-convert <path>` | Override path. Priority: this flag > `DEMUX_BCL_CONVERT` env > the path stored in `.demux/decisions.json` > the built-in fallback `~/bin/bclConvert/usr/bin/bcl-convert`. |
+| `--force` | Delete an existing `demux_out/` without prompting. |
 
-### `demux status <run-state-dir>`
+Use this for interactive runs (skip the SLURM queue) or to re-run after fixing a samplesheet error without re-going through prompts.
 
-Prints the decisions and artifact paths for a state dir. No flags.
+### `demux status <run-dir>`
 
-## Environment variables
+Print a summary of an existing state dir: command, run ID, bcl-convert binary + version, override cycles (or per-lane variants), RC choices, filter criteria, rescue stats, stripped settings, and key paths.
 
-| Variable | Effect |
+```bash
+demux status ./241015_A00123_0042_AHFJK7DSXY
+```
+
+Useful for "where was I" after coming back to a session.
+
+### Global
+
+`demux --version`, `demux --help`, `demux <subcommand> --help` — standard.
+
+---
+
+## What `init` actually does
+
+8 steps, each spelled out as it runs:
+
+1. **Parse RunInfo + SampleSheet.** Validates both exist; reports the run ID, instrument, flowcell, lanes, read cycles, and sample count.
+2. **Select bcl-convert.** See [bcl-convert](#bcl-convert-how-its-selected) below. Records path + version into `.demux/decisions.json`.
+3. **Sample selection.** Iteratively filter by lane, Sample_ID/Sample_Name regex, and/or explicit Sample_ID list. AND across criteria types, OR within a single list. Shows a running matched count.
+4. **Override cycles.** If the samplesheet has per-lane `OverrideCycles` in `[BCLConvert_Data]`, demux auto-removes the global one from `[BCLConvert_Settings]` (bcl-convert errors if both are set). Otherwise prompts whether to override the cycles detected from RunInfo, validating the format on entry.
+5. **Reverse complement.** Shows three sample i7 (and i5 if dual-indexed) values side by side with their reverse complements, then asks per-index.
+6. **Optional rescue** (only when `--top-unknown` is supplied). See [rescue](#index-rescue-from-topunknownbarcodescsv).
+7. **Review.** Prints the final samplesheet preview, the bcl-convert version chosen, and either prompts for sbatch parameters (partition, account, cpus, memory, walltime) or skips them (with `--run`). Asks for final confirmation.
+8. **Write artifacts.** Drops the state dir at `./<run-id>/`. If `--run`, hands off to `demux run`.
+
+You can Ctrl-C at any step before step 8 with zero side effects.
+
+---
+
+## bcl-convert: how it's selected
+
+`demux init` discovers candidates and prompts you to confirm. Discovery looks at:
+
+- Any explicit path: `--bcl-convert <path>` or `DEMUX_BCL_CONVERT=/path/...` env.
+- `~/bin/bclConvert*/usr/bin/bcl-convert` (the typical local install layout).
+- `~/bin/bcl-convert`, `/opt/bcl-convert/bin/bcl-convert`, `/usr/local/bin/bcl-convert`, `/usr/bin/bcl-convert`.
+- Whatever's on `PATH`.
+
+For each candidate, demux runs `<path> --version` and parses the version. It reports candidates highest-version-first, and if the samplesheet declares a `SoftwareVersion` (in Header or Settings), flags the matching candidate with `← matches samplesheet`.
+
+If only one is found, demux asks "Use this bcl-convert?" If multiple, you pick. If none, you're prompted for a path.
+
+The chosen `{path, version}` is recorded in `.demux/decisions.json` so subsequent `demux run` invocations use the same binary by default.
+
+**Skip the prompt** in future runs: `export DEMUX_BCL_CONVERT=~/bin/bclConvert4.5.4/usr/bin/bcl-convert` in your activate script, or `demux init ... --bcl-convert <path>`.
+
+---
+
+## Override cycles: global vs per-lane
+
+bcl-convert accepts `OverrideCycles` in two places:
+
+1. **`[BCLConvert_Settings]`** — global, applies to all samples.
+2. **Per-row in `[BCLConvert_Data]`** — applies only to that row's lane/sample.
+
+bcl-convert errors if **both** are set (real error: `You cannot specify 'OverrideCycles' setting in both [BCLConvert_Settings] section and [BCLConvert_Data] section`).
+
+demux detects per-lane overrides automatically: if any data row has a non-empty `OverrideCycles` column, demux removes the global one and reports the per-lane variants it kept. You see something like:
+
+```
+[4/8] Override cycles
+  › per-lane OverrideCycles found in [BCLConvert_Data]:
+    · U28;I10;I10;Y90       (84 samples)
+    · Y28;I8N2;N2I8;Y50N40  (12 samples)
+  (global OverrideCycles will be removed from [BCLConvert_Settings] to avoid conflict)
+```
+
+If there are no per-lane overrides, demux suggests the cycles derived from RunInfo (`Y151;I10;I10;Y151` style) and lets you accept or supply your own. Format validator: `Y<n>` / `I<n>` / `N<n>` / `U<n>` segments joined by `;`, e.g. `Y150U6N5;I8;I8;Y150U6N5`.
+
+---
+
+## Settings stripping
+
+bcl-convert silently rejects many keys that other Illumina tooling writes into the samplesheet. demux strips them automatically and tells you what it stripped.
+
+### Always stripped (built-in known-bad list)
+
+- `AutoDetectDemuxMode`
+- `FastqcDownsampling`
+
+### Conditionally stripped
+
+| Key | Condition |
 |---|---|
-| `DEMUX_BCL_CONVERT` | Default bcl-convert path. Skips the discovery prompt. Override per-invocation with `--bcl-convert`. |
-| `DEMUX_DEBUG=1` | Include stack traces in error output (default: hide them). |
+| `OverrideCycles` (global) | Removed when any per-lane `OverrideCycles` exists in `[BCLConvert_Data]`. |
+| `TrimUMI` | Removed when effective OverrideCycles has no `U<n>` segment. |
+| `Read1UMILength`, `Read2UMILength` | Same as `TrimUMI`. |
 
-## Behaviour you should know about
+### Manual overrides
 
-### Sample filtering
+- `--drop-settings KeyA,KeyB,…` — add more keys to strip.
+- `--keep-all-settings` — disable all stripping (use only when you're sure all settings are valid for your bcl-convert version).
 
-Three criteria: **lanes**, **Sample_ID/Sample_Name regex**, **explicit Sample_ID list**. AND across criteria types (each narrows the set), OR within one criterion. You can iterate until the matched count is what you expect.
+You'll see something like:
 
-### Reverse complement
+```
+⚠ stripping 3 BCLConvert setting(s):
+  · AutoDetectDemuxMode = None      (unsupported by bcl-convert)
+  · FastqcDownsampling  = false     (unsupported by bcl-convert)
+  · TrimUMI             = 1         (requires a U<n> segment in OverrideCycles)
+  (pass --keep-all-settings to disable stripping)
+```
 
-Always per-index. Tool shows you the first 3 sample indices alongside their reverse-complements so you can sanity-check before answering Y/N for i7 and (if dual) i5.
+---
 
-### Index rescue
+## Index rescue from `TopUnknownBarcodes.csv`
 
-Prefix-match. For each sample, take the first N bases of i7 (and i5 if dual). Find unknown barcodes whose first N bases match. Rank by read count. You pick which substitutions to apply. The full unknown barcode replaces the original index in the samplesheet.
+When the first demux has lower-than-expected yield on some samples, the actual sequenced barcodes often appear in `Reports/TopUnknownBarcodes.csv` — frequently with a different suffix than what's in the samplesheet. demux's rescue:
 
-### Settings stripping (automatic)
+1. For each filtered sample, takes the first `N` bases of its i7 (and i5 if dual-indexed). Default `N = 8`; override with `-n`.
+2. Compares against the first `N` of every unknown barcode.
+3. Surfaces candidates ranked by read count, with a confidence (% of total unknown reads).
+4. You multi-select which substitutions to apply.
 
-`bcl-convert` rejects unrecognised settings, and rejects some settings under specific conditions. The tool strips:
+There are two ways to trigger rescue:
 
-- `AutoDetectDemuxMode`, `FastqcDownsampling` — always (BaseSpace-only keys)
-- `TrimUMI`, `Read1UMILength`, `Read2UMILength` — when no `U<n>` segment is present in effective OverrideCycles
-- `OverrideCycles` in `[BCLConvert_Settings]` — when per-row `OverrideCycles` is present in `[BCLConvert_Data]`
+- **Inline during init**: `demux init <rundir> --top-unknown /path/to/TopUnknownBarcodes.csv`.
+- **As a separate pass after the first demux**: `demux rescue ./<run-id>` (auto-discovers `<run-id>/demux_out/Reports/TopUnknownBarcodes.csv`).
 
-Disable with `--keep-all-settings`. Add more with `--drop-settings k1,k2`. The warning that prints during init shows you exactly what was removed and why.
+`demux rescue` writes a new sibling dir: `./<run-id>-rescue-1/`, `./<run-id>-rescue-2/`, …
 
-### bcl-convert selection
-
-`init` auto-discovers binaries from:
-
-- `~/bin/bclConvert*/usr/bin/bcl-convert` (your site convention)
-- `~/bin/bcl-convert`, `/opt/bcl-convert/bin/bcl-convert`, `/usr/local/bin/bcl-convert`, `/usr/bin/bcl-convert`
-- whatever is on `PATH`
-
-Each candidate is run with `--version` to extract the semver. You see the list with versions and pick. If your samplesheet declares a `SoftwareVersion` (in `[Header]` or `[BCLConvert_Settings]`), it's shown alongside; mismatches trigger a yellow warning but don't block.
-
-Set `DEMUX_BCL_CONVERT=/path` or pass `--bcl-convert /path` to skip the prompt. The selected path + version is saved into `decisions.json` so `demux run` and `demux rescue` reuse it.
-
-### Per-lane OverrideCycles
-
-bcl-convert errors when `OverrideCycles` is set in both `[BCLConvert_Settings]` and `[BCLConvert_Data]`. The tool detects per-lane overrides in `[Data]`, shows you the unique variants + sample counts, skips the global override prompt, and strips `OverrideCycles` from `[Settings]` during write.
-
-### Output directory
-
-The tool does **not** pre-create `demux_out/` — bcl-convert refuses to run if it already exists.
-
-- `demux run` checks for an existing `demux_out/` and prompts to delete it (`--force` skips the prompt).
-- The generated `sbatch` script fails fast if `demux_out/` exists, with a one-line `rm -rf` suggestion in the error.
+---
 
 ## State directory layout
 
-Every invocation creates `./<run-id>/`:
+Each `demux init` creates `./<run-id>/`:
 
 ```
-./<run-id>/
-  SampleSheet.csv          # final, generated
-  demux.sbatch             # ready-to-submit (only when not --run)
-  .demux/
-    decisions.json         # everything you chose, plus timestamps + tool version
-    samplesheet.original.csv
-    samplesheet.filtered.csv
-    samplesheet.final.csv
-    runinfo.snapshot.json
-    top-unknown.snapshot.csv         # only after rescue
-    bcl-convert.stdout.log           # written by sbatch or `demux run`
-    bcl-convert.stderr.log
+241015_A00123_0042_AHFJK7DSXY/
+├── SampleSheet.csv              # final, generated — what bcl-convert reads
+├── demux.sbatch                 # ready-to-submit sbatch script (omitted with --run)
+└── .demux/
+    ├── decisions.json           # everything you chose, with timestamps
+    ├── samplesheet.original.csv # verbatim copy of the source
+    ├── samplesheet.filtered.csv # filter + RC + substitutions, no OverrideCycles
+    ├── samplesheet.final.csv    # same as ../SampleSheet.csv (kept for diff history)
+    ├── runinfo.snapshot.json    # parsed RunInfo.xml
+    ├── top-unknown.snapshot.csv # only present after rescue
+    ├── bcl-convert.stdout.log   # written when sbatch or `demux run` executes
+    └── bcl-convert.stderr.log
 ```
 
-Rescue creates `./<run-id>-rescue-N/` next to the source.
+`demux_out/` is **not** pre-created — bcl-convert refuses to overwrite an existing output dir. It's created by bcl-convert when it runs.
 
-## Examples
+### `.demux/decisions.json`
+
+Captures the complete decision state so you can resume / audit / rebuild:
+
+```json
+{
+  "schemaVersion": 1,
+  "timestamp": "2026-05-15T18:21:09.231Z",
+  "command": "init",
+  "rundir": "/lustre/.../250515_LH00954_0008_A23K3HCLT3",
+  "runId": "250515_LH00954_0008_A23K3HCLT3",
+  "filterCriteria": { "lanes": ["8"], "regex": null, "idList": [] },
+  "overrideCycles": null,
+  "perLaneOverrideCycles": [
+    { "cycles": "U28;I10;I10;Y90",       "count": 84 },
+    { "cycles": "Y28;I8N2;N2I8;Y50N40",  "count": 12 }
+  ],
+  "reverseComplement": { "i7": false, "i5": true },
+  "rescue": null,
+  "substitutions": [],
+  "sbatch": { "PARTITION": "compute", "ACCOUNT": "mylab", "CPUS": "32", "MEM": "240G", "WALLTIME": "12:00:00" },
+  "bclConvert": { "path": "/lustre/.../bin/bclConvert4.5.4/usr/bin/bcl-convert", "version": "4.5.4" },
+  "strippedSettings": ["AutoDetectDemuxMode", "FastqcDownsampling", "TrimUMI"]
+}
+```
+
+`demux status <run-dir>` prints a friendly summary of this file.
+
+---
+
+## Sbatch script
+
+Generated `demux.sbatch` includes a guard that fails fast if `demux_out/` already exists (with a `rm -rf` hint). Resource defaults — adjusted from your prompts during init:
 
 ```bash
-# fully interactive — first time using the tool, walk through everything
-demux init /lustre/illumina/20260507_LH00954_0008_A23K3HCLT3
-
-# inline interactive run (skip the sbatch queue)
-demux init /lustre/illumina/... --run
-
-# you already know the binary, want to skip the prompt
-DEMUX_BCL_CONVERT=~/bin/bclConvert4.5.4/usr/bin/bcl-convert \
-  demux init /lustre/illumina/...
-
-# inline rescue on first pass (you already have TopUnknownBarcodes.csv from a related run)
-demux init /lustre/illumina/... --top-unknown ./previous-run/demux_out/Reports/TopUnknownBarcodes.csv
-
-# review what `init` recorded
-demux status ./20260507_LH00954_0008_A23K3HCLT3
-
-# run bcl-convert against the state dir later (e.g. in a fresh interactive session)
-source ~/demux-activate
-demux run ./20260507_LH00954_0008_A23K3HCLT3
-
-# rescue against this run's own TopUnknownBarcodes after bcl-convert finishes
-demux rescue ./20260507_LH00954_0008_A23K3HCLT3 --run
-
-# strip an extra setting bcl-convert complained about
-demux init /lustre/illumina/... --drop-settings FastqCompressionFormat,Read1StartFromCycle
-
-# don't strip any settings — you've checked them manually
-demux init /lustre/illumina/... --keep-all-settings
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=240G
+#SBATCH --time=12:00:00
+#SBATCH --ntasks=1
+#SBATCH --output=<state-dir>/bcl-convert.stdout.log
+#SBATCH --error=<state-dir>/bcl-convert.stderr.log
+#SBATCH --partition=<from prompt>
+#SBATCH --account=<from prompt>
 ```
+
+The bcl-convert invocation uses `--bcl-num-conversion-threads $SLURM_CPUS_PER_TASK` and `--bcl-num-compression-threads $SLURM_CPUS_PER_TASK`.
+
+If you'd rather not queue, use `--run` or `demux run` for an interactive foreground execution.
+
+---
+
+## Common errors
+
+demux's errors use a consistent shape: red `✖`, summary, context bullets, "next:" hint. Each error has a code so you can `grep` log files.
+
+| Code | Meaning | Likely fix |
+|---|---|---|
+| `E_NO_RUNINFO` | `RunInfo.xml` missing from rundir | Point at the *top* of the run dir, not a subdir like `Data/`. |
+| `E_NO_SAMPLESHEET` | `SampleSheet.csv` missing | Use `-s /path/to/sheet.csv` if it's named or located differently. |
+| `E_DUP_IDS` | Same `Sample_ID` on the same Lane more than once | bcl-convert allows same ID across different lanes, but not within one. Edit the source. |
+| `E_BAD_CHARS` | Illegal chars in `Sample_ID` | Sanitize: only `A-Za-z0-9_-`. demux shows the suggested clean form. |
+| `E_CYCLE_MISMATCH` | Index length doesn't match RunInfo cycles | Provide `OverrideCycles` or fix the sheet. |
+| `E_NO_TOPUNKNOWN` | TopUnknownBarcodes.csv missing | bcl-convert must have completed and not been run with `--no-reports`. |
+| `E_EMPTY_FILTER` | Filter resolved to zero samples | Loosen criteria or reset. |
+| `E_NO_BCL` | bcl-convert binary not found / not executable | Pass `--bcl-convert <path>` or set `DEMUX_BCL_CONVERT`. |
+| `E_BCL_NOT_RUNNABLE` | Explicit bcl-convert path exists but `--version` fails | Wrong arch, missing libs, or not actually bcl-convert. |
+| `E_OUTPUT_EXISTS` | `demux_out/` exists during `demux run` | `rm -rf <run-dir>/demux_out` or pass `--force`. |
+| `E_NO_STATE` | Tried to `rescue`/`run`/`status` a non-state dir | Point at a dir created by `demux init` (has a `.demux/` subdir). |
+
+When troubleshooting an error, run `DEMUX_DEBUG=1 demux ...` to get a stack trace appended.
+
+---
 
 ## Troubleshooting
 
-### `node -v` segfaults after install
+### `demux: command not found` after install
 
-`nodeenv` on certain Lustre filesystems corrupts the Node binary during extraction (CVE-2007-4559 tarfile mitigation in Python 3.9 silently drops content). Skip `nodeenv` entirely — see install section above for the manual tarball install.
-
-### `npm` is slow / hangs
-
-Lustre metadata is slow. Redirect npm cache off Lustre: `export NPM_CONFIG_CACHE=/tmp/$USER/npm-cache`. The `~/demux-activate` snippet above does this for you.
-
-### bcl-convert reports "unrecognized setting X"
-
-Add it to `--drop-settings X` for one-off use. If it shows up regularly across your samplesheets, open an issue (or add it to `KNOWN_UNSUPPORTED_BCL_SETTINGS` in `src/generators/samplesheet.js`).
-
-### Wrong bcl-convert was picked
-
-Pass `--bcl-convert /correct/path` or `export DEMUX_BCL_CONVERT=/correct/path`.
-
-### "OverrideCycles in both [Settings] and [Data]" error
-
-Should not occur — the tool auto-strips the global one. If it does, paste your samplesheet's structure (the section headers and the BCLConvert_Settings/Data layout) into an issue.
-
-## Building from source
+Almost always either (a) you forgot `source ~/src/demux-activate`, or (b) the previous install left a dangling symlink in `$NPM_CONFIG_PREFIX/bin/`. Fix:
 
 ```bash
-git clone <repo> && cd demux
-npm install
-npm test
-npm run build      # → dist/demux.mjs (single ~1.2 MB bundle)
-npm pack           # → demux-<version>.tgz
+rm -rf "$NPM_CONFIG_PREFIX/lib/node_modules/.demux-"* \
+       "$NPM_CONFIG_PREFIX/lib/node_modules/demux" \
+       "$NPM_CONFIG_PREFIX/bin/demux"
+demux-update latest
 ```
 
-## Layout
+### Install reports "added 1 package" but `demux --version` errors
 
-- `src/parsers/` — RunInfo.xml, SampleSheet.csv (v1+v2), TopUnknownBarcodes.csv
-- `src/core/` — filter, RC, cycles, rescue, bcl-convert discovery (pure functions)
-- `src/generators/` — samplesheet + sbatch emitters
-- `src/state/` — per-run state directory
-- `src/ui/` — chalk/ora/inquirer-based TUI helpers
-- `src/commands/` — orchestrators (`init`, `rescue`, `run`, `status`)
-- `src/bin/demux.js` — CLI entry
+Symptom of npm's `git+` install symlinking instead of copying. Use `demux-update` (which uses the release tarball), not `npm install -g git+...` directly.
 
-## Out of scope
+### Node segfaults on first run
 
-- Auto-detecting reverse-complement need from instrument/chemistry.
-- Submitting `sbatch` jobs (you do that yourself).
-- Post-demux QC / delivery automation.
+The prebuilt Node binary doesn't tolerate Lustre's mmap behavior. The stash + `/tmp` restage pattern in the activate script works around this. If it segfaults from `/tmp` too:
+- `findmnt /tmp -o OPTIONS` — if it has `noexec`, ask your sysadmins.
+- Compile Node from source (`nodeenv --node=20.18.0 --source <path>`) — 20–40 min.
+- Use a system module if one exists: `module avail node`.
+
+### bcl-convert errors with "unrecognized setting X"
+
+Add it: `demux init ... --drop-settings X` (you can comma-separate). If you find a setting that should always be stripped, file an issue — the built-in known-bad list is at [src/generators/samplesheet.js](src/generators/samplesheet.js).
+
+### bcl-convert errors with "Cannot specify 'OverrideCycles' in both sections"
+
+demux should catch this. If you see it, you're running a version of demux that predates per-lane handling. Update: `demux-update latest`.
+
+### Different `bcl-convert` versions on different nodes
+
+The selected binary is recorded in `.demux/decisions.json` as an absolute path. If your interactive node and compute nodes have different filesystems, make sure the path you choose is accessible from both. Use a symlink or `module load` to standardize.
+
+### `demux_out/` already exists
+
+bcl-convert refuses to overwrite. Either:
+- `rm -rf <run-dir>/demux_out` and re-submit/run.
+- Pass `--force` to `demux run` for an inline run (prompts otherwise).
+
+### `/tmp` was wiped between sessions
+
+Expected — activate restages Node from `~/src/demux-node-stash` automatically, and reinstalls demux if missing. The first activate of a session can take 5–10 s while it does both.
+
+### Lustre + npm: `ENOTEMPTY` during install
+
+Stale temp dirs from a half-completed install. `demux-update` clears them before each install — use it instead of raw `npm install`.
+
+---
+
+## Development (laptop side)
+
+If you're modifying demux itself.
+
+```bash
+# clone (only on the dev machine, not the HPC)
+git clone https://github.com/mikailbala/demux.git
+cd demux
+npm install
+
+# run from source while iterating
+npm run dev -- init /path/to/test-fixtures/some-rundir
+
+# run tests
+npm test
+
+# build the single-file bundle (esbuild → dist/demux.mjs)
+npm run build
+```
+
+### Iteration loop
+
+```bash
+$EDITOR src/...
+npm run ship      # runs tests, builds dist/, stages dist/
+git commit -am "describe change"
+git push          # CI runs tests on GitHub
+```
+
+To ship a release:
+
+```bash
+npm version patch          # bumps package.json + creates a git tag
+git push && git push --tags
+# CI builds + attaches demux-<ver>.tgz to a GitHub release automatically
+```
+
+On HPC then: `demux-update v<ver>` (or just `demux-update` for latest).
+
+### CI
+
+- [.github/workflows/test.yml](.github/workflows/test.yml) — runs `npm test` + `npm run build` on every push to `main` and PR.
+- [.github/workflows/release.yml](.github/workflows/release.yml) — on a `v*` tag push, builds + packs + attaches `demux-<ver>.tgz` to a GitHub release.
+
+---
+
+## Repo layout
+
+```
+demux/
+├── src/
+│   ├── bin/demux.js              # CLI entry, commander wiring
+│   ├── commands/
+│   │   ├── init.js               # the main interactive workflow
+│   │   ├── rescue.js             # rescue from TopUnknownBarcodes.csv
+│   │   ├── run.js                # inline bcl-convert execution
+│   │   └── status.js             # summarize an existing state dir
+│   ├── core/                     # pure functions (no I/O) — testable
+│   │   ├── bcl-convert.js        # discovery + version parsing
+│   │   ├── cycles.js             # OverrideCycles suggestion + validation
+│   │   ├── filter.js             # lane / regex / id-list filtering
+│   │   ├── rescue.js             # prefix-match + substitution
+│   │   └── revcomp.js            # i7/i5 reverse complement
+│   ├── generators/
+│   │   ├── samplesheet.js        # serialize parsed sheet back to CSV, strip settings
+│   │   └── sbatch.js             # render the sbatch template
+│   ├── parsers/
+│   │   ├── runinfo.js            # RunInfo.xml
+│   │   ├── samplesheet.js        # v1 + v2 sectioned format
+│   │   └── topunknown.js         # bcl-convert's TopUnknownBarcodes.csv
+│   ├── state/
+│   │   ├── decisions.js          # read/write decisions.json
+│   │   └── statedir.js           # path computation for run state dirs
+│   └── ui/
+│       ├── theme.js              # chalk palette + symbols
+│       ├── prompts.js            # @inquirer/prompts wrappers
+│       ├── summary.js            # run summary + filter preview tables
+│       ├── candidates.js         # rescue candidates table
+│       └── errors.js             # DemuxError shape + formatting
+├── test/                          # node:test (no extra runner)
+├── dist/demux.mjs                 # built bundle (committed; the published artifact)
+├── build.mjs                      # esbuild config
+├── package.json
+└── .github/workflows/             # CI
+```
