@@ -6,7 +6,14 @@ import { runRun } from '../commands/run.js';
 import { formatError } from '../ui/errors.js';
 import { c } from '../ui/theme.js';
 
-const VERSION = '0.2.0';
+// Replaced at build time by esbuild's `define` (see build.mjs).
+// For `node src/bin/demux.js` (dev mode), falls back to reading package.json.
+const VERSION = typeof __DEMUX_VERSION__ !== 'undefined'
+  ? __DEMUX_VERSION__
+  : (await import('node:fs/promises'))
+      .then((fs) => fs.readFile(new URL('../../package.json', import.meta.url), 'utf-8'))
+      .then((s) => JSON.parse(s).version)
+      .catch(() => '0.0.0-dev');
 
 const program = new Command();
 

@@ -1,5 +1,7 @@
 import { build } from 'esbuild';
-import { chmod } from 'node:fs/promises';
+import { chmod, readFile } from 'node:fs/promises';
+
+const pkg = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf-8'));
 
 await build({
   entryPoints: ['src/bin/demux.js'],
@@ -8,6 +10,9 @@ await build({
   target: 'node20',
   format: 'esm',
   outfile: 'dist/demux.mjs',
+  define: {
+    __DEMUX_VERSION__: JSON.stringify(pkg.version),
+  },
   banner: {
     js: [
       '#!/usr/bin/env node',
@@ -18,4 +23,4 @@ await build({
 });
 
 await chmod('dist/demux.mjs', 0o755);
-console.log('built dist/demux.mjs');
+console.log(`built dist/demux.mjs (v${pkg.version})`);
