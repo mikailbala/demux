@@ -7,9 +7,13 @@ import { homedir, cpus } from 'node:os';
 
 import { existingStateDir } from '../state/statedir.js';
 import { readDecisions } from '../state/decisions.js';
+import { parseTopUnknown } from '../parsers/topunknown.js';
+import { parseSampleSheet } from '../parsers/samplesheet.js';
+import { loadKits, detectKit, detectKitFromUnknowns } from '../core/kits-10x.js';
 import { confirm } from '../ui/prompts.js';
 import { c, sym, header } from '../ui/theme.js';
 import { DemuxError } from '../ui/errors.js';
+import { readFile } from 'node:fs/promises';
 
 const FALLBACK_BCL = '~/bin/bclConvert/usr/bin/bcl-convert';
 
@@ -78,6 +82,7 @@ export async function runRun(stateDir, opts = {}) {
     console.log(`  ${c.dim('output:')} ${paths.outputDir}`);
     console.log(`  ${c.dim('logs:')}   ${paths.paths.bclStdout}`);
     console.log('');
+    await suggestKitFixIfMismatched(paths).catch(() => {});
     console.log(`${sym.info} ${c.dim('rescue if needed:')} ${c.cyan('demux rescue')} ${paths.base}`);
   } else {
     console.log(`${sym.err} ${c.bold(`bcl-convert exited with code ${code}`)} ${c.dim(`(${dt})`)}`);
@@ -128,6 +133,37 @@ async function handleExistingOutput(outputDir, opts) {
 
 function expandHome(p) {
   return p.startsWith('~/') ? join(homedir(), p.slice(2)) : p;
+}
+
+async function suggestKitFixIfMismatched(paths) {
+  // Look for Reports/TopUnknownBarcodes.csv next to the output dir.
+  const topPath = join(paths.outputDir, 'Reports', 'TopUnknownBarcodes.csv');
+  let topText;
+  try {
+    topText = await readFile(topPath, 'utf-8');
+  } catch {
+    return; // no top-unknown report → nothing to suggest
+  }
+  const top = parseTopUnknown(topText);
+  if (top.length === 0) return;
+
+  await loadKits();
+  const sheetText = await readFile(paths.samplesheet, 'utf-8');
+  const sheet = parseSampleSheet(sheetText);
+  const sheetKit = detectKit(sheet.data)[0] ?? null;
+  const unknownKit = detectKitFromUnknowns(top, { topN: 100 })[0] ?? null;
+
+  if (!unknownKit) return;
+  if (sheetKit && sheetKit.id === unknownKit.id && sheetKit.workflow === unknownKit.workflow) return;
+  if (unknownKit.readsMatched < 1000) return; // not enough signal
+
+  console.log(`${sym.warn} ${c.bold('top unknown barcodes fingerprint as a different 10x kit:')}`);
+  console.log(`  ${c.dim('samplesheet kit:')}  ${sheetKit ? `${c.bold(sheetKit.id)} workflow ${sheetKit.workflow}` : c.dim('(none detected)')}`);
+  console.log(`  ${c.dim('unknown reads kit:')} ${c.bold(unknownKit.id)} workflow ${unknownKit.workflow}  ${c.muted(`(${unknownKit.readsMatched.toLocaleString()} reads, ${unknownKit.wellCount} wells)`)}`);
+  if (sheetKit) {
+    console.log(`  ${c.cyan('fix:')} ${c.cyan('demux fix-indices')} ${paths.base} ${c.dim(`--from-kit ${sheetKit.id} --to-kit ${unknownKit.id}`)}`);
+  }
+  console.log('');
 }
 
 function formatDuration(ms) {

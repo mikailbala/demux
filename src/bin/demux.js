@@ -3,6 +3,7 @@ import { runInit } from '../commands/init.js';
 import { runRescue } from '../commands/rescue.js';
 import { runStatus } from '../commands/status.js';
 import { runRun } from '../commands/run.js';
+import { runFixIndices } from '../commands/fix-indices.js';
 import { formatError } from '../ui/errors.js';
 import { c } from '../ui/theme.js';
 
@@ -62,6 +63,19 @@ program
   .option('--force', 'delete an existing output dir without prompting')
   .action(async (dir, opts) => {
     try { await runRun(dir, opts); } catch (e) { fail(e); }
+  });
+
+program
+  .command('fix-indices')
+  .description('Swap a 10x Single Cell index kit for another while preserving well positions (e.g. NN-A → TT-A when the wrong kit was written into the samplesheet)')
+  .argument('<run-dir>', 'a directory created by `demux init` or `demux rescue`')
+  .option('--from-kit <id>', 'source kit short-id (default: auto-detected from the samplesheet)')
+  .option('--to-kit <id>', 'target kit short-id (prompted if omitted)')
+  .option('--workflow <A|B>', 'i5 workflow of the source samplesheet (default: detected)')
+  .option('--target-workflow <A|B>', 'i5 workflow to write into the new samplesheet (default: same as source)')
+  .option('-y, --yes', 'skip the confirmation prompt')
+  .action(async (dir, opts) => {
+    try { await runFixIndices(dir, opts); } catch (e) { fail(e); }
   });
 
 program

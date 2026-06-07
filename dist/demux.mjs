@@ -13,8 +13,15 @@ var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require
   if (typeof require !== "undefined") return require.apply(this, arguments);
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
 var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -6760,6 +6767,1484 @@ var require_fxp = __commonJS({
       XMLParser: XMLParser2,
       XMLValidator: validator,
       XMLBuilder
+    };
+  }
+});
+
+// src/data/10x-kits.json
+var x_kits_exports = {};
+__export(x_kits_exports, {
+  default: () => x_kits_default
+});
+var x_kits_default;
+var init_x_kits = __esm({
+  "src/data/10x-kits.json"() {
+    x_kits_default = {
+      "NN-A": {
+        name: "Single Cell 3' Dual Index Kit NN Set A",
+        pn: [
+          "1000243"
+        ],
+        wells: {
+          A1: {
+            i7: "GCCTTGTCAA",
+            i5_a: "GATCCAATCA",
+            i5_b: "TGATTGGATC"
+          },
+          A2: {
+            i7: "AACTTCTTTG",
+            i5_a: "ATAAGCGGTA",
+            i5_b: "TACCGCTTAT"
+          },
+          A3: {
+            i7: "TGGTTATAGA",
+            i5_a: "GAGCTCATAA",
+            i5_b: "TTATGAGCTC"
+          },
+          A4: {
+            i7: "GTAGTGCATC",
+            i5_a: "ATTTGACGGT",
+            i5_b: "ACCGTCAAAT"
+          },
+          A5: {
+            i7: "GCTTGATTTA",
+            i5_a: "CGGGTGTGAC",
+            i5_b: "GTCACACCCG"
+          },
+          A6: {
+            i7: "GAAGTTTCGC",
+            i5_a: "TTTCAAAGCA",
+            i5_b: "TGCTTTGAAA"
+          },
+          A7: {
+            i7: "GCAGTTGTTT",
+            i5_a: "ACACTACTTT",
+            i5_b: "AAAGTAGTGT"
+          },
+          A8: {
+            i7: "GCCGCAAGTA",
+            i5_a: "AAAGGTCCGC",
+            i5_b: "GCGGACCTTT"
+          },
+          A9: {
+            i7: "AAGTTGTATG",
+            i5_a: "TGTACAATGC",
+            i5_b: "GCATTGTACA"
+          },
+          A10: {
+            i7: "AGCAACCTTT",
+            i5_a: "TTCAGCGCTA",
+            i5_b: "TAGCGCTGAA"
+          },
+          A11: {
+            i7: "GACGAGGGTT",
+            i5_a: "TTACTTTGAC",
+            i5_b: "GTCAAAGTAA"
+          },
+          A12: {
+            i7: "TGAACAGTCG",
+            i5_a: "ATTTCTCAGA",
+            i5_b: "TCTGAGAAAT"
+          },
+          B1: {
+            i7: "CGAAAGGAGT",
+            i5_a: "ACACCAAACA",
+            i5_b: "TGTTTGGTGT"
+          },
+          B2: {
+            i7: "GAATGACTTG",
+            i5_a: "TGAGCTCGCT",
+            i5_b: "AGCGAGCTCA"
+          },
+          B3: {
+            i7: "GCCAGGGATT",
+            i5_a: "CAAGTTTAGG",
+            i5_b: "CCTAAACTTG"
+          },
+          B4: {
+            i7: "CTTTGTCCGC",
+            i5_a: "GCTGTCCCGT",
+            i5_b: "ACGGGACAGC"
+          },
+          B5: {
+            i7: "AGCTTGGGTG",
+            i5_a: "AGCGTATAGT",
+            i5_b: "ACTATACGCT"
+          },
+          B6: {
+            i7: "TCGCACCGGT",
+            i5_a: "TAGCCTCAGG",
+            i5_b: "CCTGAGGCTA"
+          },
+          B7: {
+            i7: "TTTAGGTAGG",
+            i5_a: "ACTGAGGGAC",
+            i5_b: "GTCCCTCAGT"
+          },
+          B8: {
+            i7: "GTTCGAGCGG",
+            i5_a: "CTGTGGGTTT",
+            i5_b: "AAACCCACAG"
+          },
+          B9: {
+            i7: "AGGGTATGGC",
+            i5_a: "GAGTCCGACT",
+            i5_b: "AGTCGGACTC"
+          },
+          B10: {
+            i7: "TACCCACTAT",
+            i5_a: "TGGAACATAT",
+            i5_b: "ATATGTTCCA"
+          },
+          B11: {
+            i7: "TTCAGGCTAC",
+            i5_a: "CTGGGTATTG",
+            i5_b: "CAATACCCAG"
+          },
+          B12: {
+            i7: "AGGAATAGAT",
+            i5_a: "TGCGGTCACG",
+            i5_b: "CGTGACCGCA"
+          },
+          C1: {
+            i7: "ACAGCGCTGT",
+            i5_a: "GAGGGTCATC",
+            i5_b: "GATGACCCTC"
+          },
+          C2: {
+            i7: "GACGTACGGA",
+            i5_a: "ACCTCGCTTT",
+            i5_b: "AAAGCGAGGT"
+          },
+          C3: {
+            i7: "CTTAGATGCA",
+            i5_a: "CTATTCGACT",
+            i5_b: "AGTCGAATAG"
+          },
+          C4: {
+            i7: "ACTCCTCAAC",
+            i5_a: "ATTCACGGGA",
+            i5_b: "TCCCGTGAAT"
+          },
+          C5: {
+            i7: "TCCATACTGT",
+            i5_a: "GAGCGACTTC",
+            i5_b: "GAAGTCGCTC"
+          },
+          C6: {
+            i7: "GCCAGAATGG",
+            i5_a: "GAATTGTATC",
+            i5_b: "GATACAATTC"
+          },
+          C7: {
+            i7: "ATTGCAAGAC",
+            i5_a: "CGGTGACCAT",
+            i5_b: "ATGGTCACCG"
+          },
+          C8: {
+            i7: "CAACATATCG",
+            i5_a: "AACTAAAGGC",
+            i5_b: "GCCTTTAGTT"
+          },
+          C9: {
+            i7: "CAGGGACCTC",
+            i5_a: "AATAGCAGCA",
+            i5_b: "TGCTGCTATT"
+          },
+          C10: {
+            i7: "ATTTGGGAAT",
+            i5_a: "TCAGCCGAGT",
+            i5_b: "ACTCGGCTGA"
+          },
+          C11: {
+            i7: "TGGATAATTG",
+            i5_a: "TTTGTGATCA",
+            i5_b: "TGATCACAAA"
+          },
+          C12: {
+            i7: "CAGATTATGA",
+            i5_a: "GTGCCTGTAC",
+            i5_b: "GTACAGGCAC"
+          },
+          D1: {
+            i7: "AATGGTAAGC",
+            i5_a: "CTGTGAAGTT",
+            i5_b: "AACTTCACAG"
+          },
+          D2: {
+            i7: "CATCCCTCGG",
+            i5_a: "AGGGTAGGCG",
+            i5_b: "CGCCTACCCT"
+          },
+          D3: {
+            i7: "CTGGTCCGTC",
+            i5_a: "ACGAATAAGG",
+            i5_b: "CCTTATTCGT"
+          },
+          D4: {
+            i7: "GTCGTAAATT",
+            i5_a: "GTAGTAGGCT",
+            i5_b: "AGCCTACTAC"
+          },
+          D5: {
+            i7: "CAACACTGAT",
+            i5_a: "CAAACCAGGG",
+            i5_b: "CCCTGGTTTG"
+          },
+          D6: {
+            i7: "CAGACTGAAT",
+            i5_a: "TGCCTAACCG",
+            i5_b: "CGGTTAGGCA"
+          },
+          D7: {
+            i7: "CGGACACGCT",
+            i5_a: "TCACGATATA",
+            i5_b: "TATATCGTGA"
+          },
+          D8: {
+            i7: "CTCGGCTCTC",
+            i5_a: "TATACTTCCA",
+            i5_b: "TGGAAGTATA"
+          },
+          D9: {
+            i7: "AAGCCTATCA",
+            i5_a: "GTAGTGAACA",
+            i5_b: "TGTTCACTAC"
+          },
+          D10: {
+            i7: "ACTGTGCCAA",
+            i5_a: "TAACCGTTAT",
+            i5_b: "ATAACGGTTA"
+          },
+          D11: {
+            i7: "CTACTCCCAT",
+            i5_a: "TACGTTGCGG",
+            i5_b: "CCGCAACGTA"
+          },
+          D12: {
+            i7: "AGACTCTAAC",
+            i5_a: "GTGTCGATGT",
+            i5_b: "ACATCGACAC"
+          },
+          E1: {
+            i7: "TGAGCCGGCA",
+            i5_a: "TGCTGCATGT",
+            i5_b: "ACATGCAGCA"
+          },
+          E2: {
+            i7: "TAGCTTGCGT",
+            i5_a: "GCTGCTAAAG",
+            i5_b: "CTTTAGCAGC"
+          },
+          E3: {
+            i7: "GTACACCGGG",
+            i5_a: "AACAGTCGCG",
+            i5_b: "CGCGACTGTT"
+          },
+          E4: {
+            i7: "CGCGTAGACG",
+            i5_a: "AAAGTAGCTG",
+            i5_b: "CAGCTACTTT"
+          },
+          E5: {
+            i7: "CCGATATATT",
+            i5_a: "AACTATCCGA",
+            i5_b: "TCGGATAGTT"
+          },
+          E6: {
+            i7: "TTGGGCGGGA",
+            i5_a: "ATGTATCTGT",
+            i5_b: "ACAGATACAT"
+          },
+          E7: {
+            i7: "GTTTATGAGG",
+            i5_a: "GCCAAACAGC",
+            i5_b: "GCTGTTTGGC"
+          },
+          E8: {
+            i7: "TTGGATACTC",
+            i5_a: "CGTACTGAAG",
+            i5_b: "CTTCAGTACG"
+          },
+          E9: {
+            i7: "GCTATCTATC",
+            i5_a: "AAAGATGGAT",
+            i5_b: "ATCCATCTTT"
+          },
+          E10: {
+            i7: "ATGTGATCGC",
+            i5_a: "TGACCTACCT",
+            i5_b: "AGGTAGGTCA"
+          },
+          E11: {
+            i7: "TCCTCACATG",
+            i5_a: "AACAGATTCA",
+            i5_b: "TGAATCTGTT"
+          },
+          E12: {
+            i7: "GCCTCCTAAT",
+            i5_a: "CTCCTCCTGT",
+            i5_b: "ACAGGAGGAG"
+          },
+          F1: {
+            i7: "CGAGGCTGAT",
+            i5_a: "TCGACTTTCT",
+            i5_b: "AGAAAGTCGA"
+          },
+          F2: {
+            i7: "CTCATGACAT",
+            i5_a: "TGTTCCGCAC",
+            i5_b: "GTGCGGAACA"
+          },
+          F3: {
+            i7: "AACGCGGCAA",
+            i5_a: "GCCCGTTTAC",
+            i5_b: "GTAAACGGGC"
+          },
+          F4: {
+            i7: "AACACCTCTC",
+            i5_a: "GATTGTATGA",
+            i5_b: "TCATACAATC"
+          },
+          F5: {
+            i7: "AAATAACGCG",
+            i5_a: "ATAGAGGAGC",
+            i5_b: "GCTCCTCTAT"
+          },
+          F6: {
+            i7: "GAAATCTTGT",
+            i5_a: "TAGACGCCAC",
+            i5_b: "GTGGCGTCTA"
+          },
+          F7: {
+            i7: "TAGATGGACT",
+            i5_a: "CCAGGGATAT",
+            i5_b: "ATATCCCTGG"
+          },
+          F8: {
+            i7: "CAATCTGTAT",
+            i5_a: "TCCCATCGTT",
+            i5_b: "AACGATGGGA"
+          },
+          F9: {
+            i7: "GCGAAAGTAT",
+            i5_a: "GTGTCACAGA",
+            i5_b: "TCTGTGACAC"
+          },
+          F10: {
+            i7: "CCCAGAGCTT",
+            i5_a: "ATGCTGTAAT",
+            i5_b: "ATTACAGCAT"
+          },
+          F11: {
+            i7: "GACTACAGGA",
+            i5_a: "AGTGACAAAG",
+            i5_b: "CTTTGTCACT"
+          },
+          F12: {
+            i7: "CAATTCATGG",
+            i5_a: "ACGTAGTTCG",
+            i5_b: "CGAACTACGT"
+          },
+          G1: {
+            i7: "TGGGAAGGGC",
+            i5_a: "ACTAACGATG",
+            i5_b: "CATCGTTAGT"
+          },
+          G2: {
+            i7: "TACTTCGCAT",
+            i5_a: "AACGGTGTCG",
+            i5_b: "CGACACCGTT"
+          },
+          G3: {
+            i7: "TAAACTGGCA",
+            i5_a: "CCGACCTCTT",
+            i5_b: "AAGAGGTCGG"
+          },
+          G4: {
+            i7: "TTGAAGAACT",
+            i5_a: "CAACACCAGG",
+            i5_b: "CCTGGTGTTG"
+          },
+          G5: {
+            i7: "TCCCTCGTCA",
+            i5_a: "ATCAGGTGTG",
+            i5_b: "CACACCTGAT"
+          },
+          G6: {
+            i7: "ACTGGCCTAA",
+            i5_a: "CGCTCCCTTG",
+            i5_b: "CAAGGGAGCG"
+          },
+          G7: {
+            i7: "TCATAATGCA",
+            i5_a: "GATGAGGCGA",
+            i5_b: "TCGCCTCATC"
+          },
+          G8: {
+            i7: "CGCCACGTTA",
+            i5_a: "CTTTCATAGG",
+            i5_b: "CCTATGAAAG"
+          },
+          G9: {
+            i7: "TGGACTAAGC",
+            i5_a: "CTTAACATCG",
+            i5_b: "CGATGTTAAG"
+          },
+          G10: {
+            i7: "AAGCCCGGCA",
+            i5_a: "GAGTTTCCGT",
+            i5_b: "ACGGAAACTC"
+          },
+          G11: {
+            i7: "ATAGTGGCGG",
+            i5_a: "TACTGTTGTT",
+            i5_b: "AACAACAGTA"
+          },
+          G12: {
+            i7: "CCAACCGGAC",
+            i5_a: "GTTCTATCTA",
+            i5_b: "TAGATAGAAC"
+          },
+          H1: {
+            i7: "TTACAGAGGG",
+            i5_a: "GTTTATGGCA",
+            i5_b: "TGCCATAAAC"
+          },
+          H2: {
+            i7: "TCCAACAACG",
+            i5_a: "GTCCGGGTTT",
+            i5_b: "AAACCCGGAC"
+          },
+          H3: {
+            i7: "AAAGCATGTC",
+            i5_a: "AGATACTACT",
+            i5_b: "AGTAGTATCT"
+          },
+          H4: {
+            i7: "AGAAGTCGTT",
+            i5_a: "AGGACATTTA",
+            i5_b: "TAAATGTCCT"
+          },
+          H5: {
+            i7: "GCTAGCGTTC",
+            i5_a: "TCGCGTGGTG",
+            i5_b: "CACCACGCGA"
+          },
+          H6: {
+            i7: "CAACTAGCTT",
+            i5_a: "TCAACTAATC",
+            i5_b: "GATTAGTTGA"
+          },
+          H7: {
+            i7: "AGGGCCAGTT",
+            i5_a: "TAGGGCAAAT",
+            i5_b: "ATTTGCCCTA"
+          },
+          H8: {
+            i7: "CTCTATGCGT",
+            i5_a: "CCTCTGATGC",
+            i5_b: "GCATCAGAGG"
+          },
+          H9: {
+            i7: "GTCCATACAA",
+            i5_a: "AGCCACTCAC",
+            i5_b: "GTGAGTGGCT"
+          },
+          H10: {
+            i7: "AGGGATGCAA",
+            i5_a: "CTCATATCCT",
+            i5_b: "AGGATATGAG"
+          },
+          H11: {
+            i7: "TTCAAGTCCT",
+            i5_a: "CAGCAGCTAA",
+            i5_b: "TTAGCTGCTG"
+          },
+          H12: {
+            i7: "CTCCAACCTA",
+            i5_a: "GCACCGCATC",
+            i5_b: "GATGCGGTGC"
+          }
+        }
+      },
+      "NT-A": {
+        name: "Single Cell 3' Dual Index Kit NT Set A",
+        pn: [
+          "1000242"
+        ],
+        wells: {
+          A1: {
+            i7: "ATTTACCGCA",
+            i5_a: "GACAATAAAG",
+            i5_b: "CTTTATTGTC"
+          },
+          A2: {
+            i7: "TTGTCGTAGA",
+            i5_a: "CAATGTAGCA",
+            i5_b: "TGCTACATTG"
+          },
+          A3: {
+            i7: "AGTCCTGCGG",
+            i5_a: "TGACACAAGT",
+            i5_b: "ACTTGTGTCA"
+          },
+          A4: {
+            i7: "TTGTTCATGT",
+            i5_a: "TGACAGCTGA",
+            i5_b: "TCAGCTGTCA"
+          },
+          A5: {
+            i7: "TCAGGAAGGA",
+            i5_a: "GAACGTGCTT",
+            i5_b: "AAGCACGTTC"
+          },
+          A6: {
+            i7: "CTGTTAGAGG",
+            i5_a: "CCACGCTTCG",
+            i5_b: "CGAAGCGTGG"
+          },
+          A7: {
+            i7: "AGATGAGAAT",
+            i5_a: "GTCGACGGGT",
+            i5_b: "ACCCGTCGAC"
+          },
+          A8: {
+            i7: "CCAAAGCCGG",
+            i5_a: "ACCGTGCACA",
+            i5_b: "TGTGCACGGT"
+          },
+          A9: {
+            i7: "AGTCATAATG",
+            i5_a: "AGGCTTGAAA",
+            i5_b: "TTTCAAGCCT"
+          },
+          A10: {
+            i7: "TTCATCAGAG",
+            i5_a: "TTGTCGTCTC",
+            i5_b: "GAGACGACAA"
+          },
+          A11: {
+            i7: "GAAGCGCGAA",
+            i5_a: "CAGCGAAATT",
+            i5_b: "AATTTCGCTG"
+          },
+          A12: {
+            i7: "ATCCGCCGAA",
+            i5_a: "GCTACAGAAT",
+            i5_b: "ATTCTGTAGC"
+          },
+          B1: {
+            i7: "CTTATTGTGG",
+            i5_a: "AGCTGTGGGT",
+            i5_b: "ACCCACAGCT"
+          },
+          B2: {
+            i7: "ATTCGTTGGG",
+            i5_a: "CATCAGGAGC",
+            i5_b: "GCTCCTGATG"
+          },
+          B3: {
+            i7: "GTGGCCTCAT",
+            i5_a: "TCGAAAGTGA",
+            i5_b: "TCACTTTCGA"
+          },
+          B4: {
+            i7: "CTATGGCATC",
+            i5_a: "CTCTGAGCGC",
+            i5_b: "GCGCTCAGAG"
+          },
+          B5: {
+            i7: "AAACCACAGT",
+            i5_a: "CCGCAAATGG",
+            i5_b: "CCATTTGCGG"
+          },
+          B6: {
+            i7: "ATGTATCCAC",
+            i5_a: "CAGGCTGAGG",
+            i5_b: "CCTCAGCCTG"
+          },
+          B7: {
+            i7: "GATGAGTCTG",
+            i5_a: "TATGTAACCG",
+            i5_b: "CGGTTACATA"
+          },
+          B8: {
+            i7: "CTCACAATAA",
+            i5_a: "CCGTGTTTAA",
+            i5_b: "TTAAACACGG"
+          },
+          B9: {
+            i7: "TCTGTCGCAA",
+            i5_a: "ATCCGAACTG",
+            i5_b: "CAGTTCGGAT"
+          },
+          B10: {
+            i7: "CATCGAGAAG",
+            i5_a: "GTGCATCCGC",
+            i5_b: "GCGGATGCAC"
+          },
+          B11: {
+            i7: "ACGTATTGGG",
+            i5_a: "CAATCGCAAA",
+            i5_b: "TTTGCGATTG"
+          },
+          B12: {
+            i7: "CTTACGCGAC",
+            i5_a: "CCTGTCGGAT",
+            i5_b: "ATCCGACAGG"
+          },
+          C1: {
+            i7: "GATAGTGAAG",
+            i5_a: "CGTTCGCCAG",
+            i5_b: "CTGGCGAACG"
+          },
+          C2: {
+            i7: "CTGTGCAATG",
+            i5_a: "ATGGTGCTTT",
+            i5_b: "AAAGCACCAT"
+          },
+          C3: {
+            i7: "AAAGCTGAGC",
+            i5_a: "CAGGAACGAG",
+            i5_b: "CTCGTTCCTG"
+          },
+          C4: {
+            i7: "GTCCAAGTCG",
+            i5_a: "GTCATGGCAC",
+            i5_b: "GTGCCATGAC"
+          },
+          C5: {
+            i7: "GATTTCCATC",
+            i5_a: "CTTATGGTCA",
+            i5_b: "TGACCATAAG"
+          },
+          C6: {
+            i7: "CTAAATGGAT",
+            i5_a: "AATCACATAC",
+            i5_b: "GTATGTGATT"
+          },
+          C7: {
+            i7: "ATTTCAGTTC",
+            i5_a: "GCAGCATTAA",
+            i5_b: "TTAATGCTGC"
+          },
+          C8: {
+            i7: "TTGCGACGTC",
+            i5_a: "TTAATCCACA",
+            i5_b: "TGTGGATTAA"
+          },
+          C9: {
+            i7: "GTACTGTCCA",
+            i5_a: "TTTGTTGGAA",
+            i5_b: "TTCCAACAAA"
+          },
+          C10: {
+            i7: "AAACGGTTTA",
+            i5_a: "TCTTCGTTAC",
+            i5_b: "GTAACGAAGA"
+          },
+          C11: {
+            i7: "CGATAGTTCT",
+            i5_a: "GCGATTTCCT",
+            i5_b: "AGGAAATCGC"
+          },
+          C12: {
+            i7: "TACTTTAGCT",
+            i5_a: "GAGTTATTTG",
+            i5_b: "CAAATAACTC"
+          },
+          D1: {
+            i7: "CTGGGATTAA",
+            i5_a: "AGTAAAGTTC",
+            i5_b: "GAACTTTACT"
+          },
+          D2: {
+            i7: "TACACTATTC",
+            i5_a: "ATTGCAACGT",
+            i5_b: "ACGTTGCAAT"
+          },
+          D3: {
+            i7: "AGAGCTATTT",
+            i5_a: "CTGGCACCCA",
+            i5_b: "TGGGTGCCAG"
+          },
+          D4: {
+            i7: "AGGTCGTTAT",
+            i5_a: "AGGTTATCCA",
+            i5_b: "TGGATAACCT"
+          },
+          D5: {
+            i7: "GCTGGACAGG",
+            i5_a: "TAATCTCTGT",
+            i5_b: "ACAGAGATTA"
+          },
+          D6: {
+            i7: "ACTTAGATGG",
+            i5_a: "AATGTTGAGT",
+            i5_b: "ACTCAACATT"
+          },
+          D7: {
+            i7: "AGGCGCGAGT",
+            i5_a: "TGTGTCTATA",
+            i5_b: "TATAGACACA"
+          },
+          D8: {
+            i7: "GAGGTCGTAC",
+            i5_a: "CAACTGCGGG",
+            i5_b: "CCCGCAGTTG"
+          },
+          D9: {
+            i7: "CCCAATGAGC",
+            i5_a: "AGTTTCTGAT",
+            i5_b: "ATCAGAAACT"
+          },
+          D10: {
+            i7: "ACATTCAGGG",
+            i5_a: "GTCCTGAGAG",
+            i5_b: "CTCTCAGGAC"
+          },
+          D11: {
+            i7: "AGAAACGGTG",
+            i5_a: "TCACCCAGCA",
+            i5_b: "TGCTGGGTGA"
+          },
+          D12: {
+            i7: "AGTTGCAAGT",
+            i5_a: "ATACTTCATG",
+            i5_b: "CATGAAGTAT"
+          },
+          E1: {
+            i7: "GCCTAGAAAT",
+            i5_a: "ACTACTCCGG",
+            i5_b: "CCGGAGTAGT"
+          },
+          E2: {
+            i7: "TACAAAGATG",
+            i5_a: "CCGATGACGT",
+            i5_b: "ACGTCATCGG"
+          },
+          E3: {
+            i7: "GCAGGCTTAG",
+            i5_a: "CGTCTATTGC",
+            i5_b: "GCAATAGACG"
+          },
+          E4: {
+            i7: "CAGCTCCAAT",
+            i5_a: "TAGGAGGGTG",
+            i5_b: "CACCCTCCTA"
+          },
+          E5: {
+            i7: "TTTGGAGAAA",
+            i5_a: "CAGCCCTTGA",
+            i5_b: "TCAAGGGCTG"
+          },
+          E6: {
+            i7: "TGTCGCTTTC",
+            i5_a: "CCTAAAGGGT",
+            i5_b: "ACCCTTTAGG"
+          },
+          E7: {
+            i7: "GTGTTGCGAG",
+            i5_a: "CACTTTGAGC",
+            i5_b: "GCTCAAAGTG"
+          },
+          E8: {
+            i7: "GTCTGTTCTG",
+            i5_a: "TCTGATGCTT",
+            i5_b: "AAGCATCAGA"
+          },
+          E9: {
+            i7: "TCGCTCAATC",
+            i5_a: "GCTTACGTGA",
+            i5_b: "TCACGTAAGC"
+          },
+          E10: {
+            i7: "CGTTACTAGC",
+            i5_a: "AATGGCCATT",
+            i5_b: "AATGGCCATT"
+          },
+          E11: {
+            i7: "GTGCAGATTT",
+            i5_a: "TAAAGGCGAT",
+            i5_b: "ATCGCCTTTA"
+          },
+          E12: {
+            i7: "GTTACCGAAA",
+            i5_a: "CGTTTGAATC",
+            i5_b: "GATTCAAACG"
+          },
+          F1: {
+            i7: "CGGTATGGAA",
+            i5_a: "TGCAACTGGT",
+            i5_b: "ACCAGTTGCA"
+          },
+          F2: {
+            i7: "TCGGTTTAGT",
+            i5_a: "TAAAGTGTTC",
+            i5_b: "GAACACTTTA"
+          },
+          F3: {
+            i7: "CTTTGCTTTG",
+            i5_a: "ACATTCATTC",
+            i5_b: "GAATGAATGT"
+          },
+          F4: {
+            i7: "ATGATCGCAC",
+            i5_a: "GCGGTATGTA",
+            i5_b: "TACATACCGC"
+          },
+          F5: {
+            i7: "CGGCGTGTTA",
+            i5_a: "TGAGACGCGG",
+            i5_b: "CCGCGTCTCA"
+          },
+          F6: {
+            i7: "TCATTTCCGC",
+            i5_a: "ACAGCTGTTG",
+            i5_b: "CAACAGCTGT"
+          },
+          F7: {
+            i7: "TTGTGCCCAG",
+            i5_a: "TTGCGAGTTG",
+            i5_b: "CAACTCGCAA"
+          },
+          F8: {
+            i7: "AGCCAACGTG",
+            i5_a: "TCAAAGGAAC",
+            i5_b: "GTTCCTTTGA"
+          },
+          F9: {
+            i7: "GATCCATACT",
+            i5_a: "ATCGAGAGAA",
+            i5_b: "TTCTCTCGAT"
+          },
+          F10: {
+            i7: "TTTCCATGAA",
+            i5_a: "CGGTTCTAAC",
+            i5_b: "GTTAGAACCG"
+          },
+          F11: {
+            i7: "TCTTTATCGG",
+            i5_a: "CCCAATAGCG",
+            i5_b: "CGCTATTGGG"
+          },
+          F12: {
+            i7: "GAACCCGATG",
+            i5_a: "TCTATCCGGG",
+            i5_b: "CCCGGATAGA"
+          },
+          G1: {
+            i7: "GATGTCTGTG",
+            i5_a: "CGTGCTACCG",
+            i5_b: "CGGTAGCACG"
+          },
+          G2: {
+            i7: "TGTTAGACTA",
+            i5_a: "TCATGACGAC",
+            i5_b: "GTCGTCATGA"
+          },
+          G3: {
+            i7: "TAGAACGCTT",
+            i5_a: "GTCGCAAACG",
+            i5_b: "CGTTTGCGAC"
+          },
+          G4: {
+            i7: "AATTTGACGT",
+            i5_a: "AGAAGTGAGG",
+            i5_b: "CCTCACTTCT"
+          },
+          G5: {
+            i7: "GAGTGGCCAC",
+            i5_a: "GATGCACAGT",
+            i5_b: "ACTGTGCATC"
+          },
+          G6: {
+            i7: "ATCAGTTACG",
+            i5_a: "TACAATCTCT",
+            i5_b: "AGAGATTGTA"
+          },
+          G7: {
+            i7: "TGTAAGCTTT",
+            i5_a: "CGGACTAGTC",
+            i5_b: "GACTAGTCCG"
+          },
+          G8: {
+            i7: "GCTTCGGTCT",
+            i5_a: "CGCGGGTTAG",
+            i5_b: "CTAACCCGCG"
+          },
+          G9: {
+            i7: "AGTCTAAGAC",
+            i5_a: "CTGAAGTGAA",
+            i5_b: "TTCACTTCAG"
+          },
+          G10: {
+            i7: "TGAAACATTC",
+            i5_a: "CCTCCTGCCT",
+            i5_b: "AGGCAGGAGG"
+          },
+          G11: {
+            i7: "CCTCACGAAA",
+            i5_a: "TGCCCTGTGC",
+            i5_b: "GCACAGGGCA"
+          },
+          G12: {
+            i7: "CTACGGGCTT",
+            i5_a: "AGGCGTCCCT",
+            i5_b: "AGGGACGCCT"
+          },
+          H1: {
+            i7: "GCGGCGTAAA",
+            i5_a: "CACGCGATCA",
+            i5_b: "TGATCGCGTG"
+          },
+          H2: {
+            i7: "TCTCCTTCGG",
+            i5_a: "TGTCCGTCGC",
+            i5_b: "GCGACGGACA"
+          },
+          H3: {
+            i7: "CCTTACCCAT",
+            i5_a: "TCCCGGCAAC",
+            i5_b: "GTTGCCGGGA"
+          },
+          H4: {
+            i7: "AAGGAACATC",
+            i5_a: "TATCTGTGGG",
+            i5_b: "CCCACAGATA"
+          },
+          H5: {
+            i7: "GTGGGAACTT",
+            i5_a: "GCACTTACAG",
+            i5_b: "CTGTAAGTGC"
+          },
+          H6: {
+            i7: "ACCGCACCAC",
+            i5_a: "TCGGATTATA",
+            i5_b: "TATAATCCGA"
+          },
+          H7: {
+            i7: "ACCTTTATCT",
+            i5_a: "CGAGTGCCAA",
+            i5_b: "TTGGCACTCG"
+          },
+          H8: {
+            i7: "AGTAGCCCGT",
+            i5_a: "TTCGGGACCT",
+            i5_b: "AGGTCCCGAA"
+          },
+          H9: {
+            i7: "AGATAGCATA",
+            i5_a: "CATTTCCGGA",
+            i5_b: "TCCGGAAATG"
+          },
+          H10: {
+            i7: "TGGCGTTAAA",
+            i5_a: "TGTTAAGATG",
+            i5_b: "CATCTTAACA"
+          },
+          H11: {
+            i7: "TCAGGCGAAA",
+            i5_a: "TCTCTGGAAG",
+            i5_b: "CTTCCAGAGA"
+          },
+          H12: {
+            i7: "AAGACATAGC",
+            i5_a: "ATGTGGACGT",
+            i5_b: "ACGTCCACAT"
+          }
+        }
+      },
+      "TT-A": {
+        name: "Single Cell 3' Dual Index Kit TT Set A",
+        pn: [
+          "1000215",
+          "3000431"
+        ],
+        wells: {
+          A1: {
+            i7: "GTAACATGCG",
+            i5_a: "AGTGTTACCT",
+            i5_b: "AGGTAACACT"
+          },
+          A2: {
+            i7: "GTGGATCAAA",
+            i5_a: "GCCAACCCTG",
+            i5_b: "CAGGGTTGGC"
+          },
+          A3: {
+            i7: "CACTACGAAA",
+            i5_a: "TTAGACTGAT",
+            i5_b: "ATCAGTCTAA"
+          },
+          A4: {
+            i7: "CTCTAGCGAG",
+            i5_a: "TATCTTCATC",
+            i5_b: "GATGAAGATA"
+          },
+          A5: {
+            i7: "GTAGCCCTGT",
+            i5_a: "GAGCATCTAT",
+            i5_b: "ATAGATGCTC"
+          },
+          A6: {
+            i7: "TAACGCGTGA",
+            i5_a: "CCCTAACTTC",
+            i5_b: "GAAGTTAGGG"
+          },
+          A7: {
+            i7: "TCCCAAGGGT",
+            i5_a: "TACTACCTTT",
+            i5_b: "AAAGGTAGTA"
+          },
+          A8: {
+            i7: "CGAAGTATAC",
+            i5_a: "GAACTTGGAG",
+            i5_b: "CTCCAAGTTC"
+          },
+          A9: {
+            i7: "AAGTGGAGAG",
+            i5_a: "TTCCTGTTAC",
+            i5_b: "GTAACAGGAA"
+          },
+          A10: {
+            i7: "CGTGACATGC",
+            i5_a: "ATGGTCTAAA",
+            i5_b: "TTTAGACCAT"
+          },
+          A11: {
+            i7: "CGGAACCCAA",
+            i5_a: "GATTCGAGGA",
+            i5_b: "TCCTCGAATC"
+          },
+          A12: {
+            i7: "CACCGCACCA",
+            i5_a: "GACTGTCAAT",
+            i5_b: "ATTGACAGTC"
+          },
+          B1: {
+            i7: "ACAGTAACTA",
+            i5_a: "ACAGTTCGTT",
+            i5_b: "AACGAACTGT"
+          },
+          B2: {
+            i7: "TCTACCATTT",
+            i5_a: "CGGGAGAGTC",
+            i5_b: "GACTCTCCCG"
+          },
+          B3: {
+            i7: "CACGGTGAAT",
+            i5_a: "GTTCGTCACA",
+            i5_b: "TGTGACGAAC"
+          },
+          B4: {
+            i7: "GTAGACGAAA",
+            i5_a: "CTAGTGTGGT",
+            i5_b: "ACCACACTAG"
+          },
+          B5: {
+            i7: "TCGGCTCTAC",
+            i5_a: "CCGATGGTCT",
+            i5_b: "AGACCATCGG"
+          },
+          B6: {
+            i7: "AATGCCATGA",
+            i5_a: "TACGTAATGC",
+            i5_b: "GCATTACGTA"
+          },
+          B7: {
+            i7: "GCCTTCGGTA",
+            i5_a: "CCAACGATTT",
+            i5_b: "AAATCGTTGG"
+          },
+          B8: {
+            i7: "GCACTGAGAA",
+            i5_a: "TATGCGTGAA",
+            i5_b: "TTCACGCATA"
+          },
+          B9: {
+            i7: "TATTGAGGCA",
+            i5_a: "CAGGTAAGTG",
+            i5_b: "CACTTACCTG"
+          },
+          B10: {
+            i7: "GCCCGATGGA",
+            i5_a: "AATCGTCTAG",
+            i5_b: "CTAGACGATT"
+          },
+          B11: {
+            i7: "TCTTACTTGC",
+            i5_a: "TGACCTCTAG",
+            i5_b: "CTAGAGGTCA"
+          },
+          B12: {
+            i7: "CGTCAAGGGC",
+            i5_a: "TAGGTCACTC",
+            i5_b: "GAGTGACCTA"
+          },
+          C1: {
+            i7: "TGCGCGGTTT",
+            i5_a: "CAAGGATAAA",
+            i5_b: "TTTATCCTTG"
+          },
+          C2: {
+            i7: "CAATCCCGAC",
+            i5_a: "CCGAGTAGTA",
+            i5_b: "TACTACTCGG"
+          },
+          C3: {
+            i7: "ATGGCTTGTG",
+            i5_a: "GAATGTTGTG",
+            i5_b: "CACAACATTC"
+          },
+          C4: {
+            i7: "TTCTCGATGA",
+            i5_a: "TGTCGGGCAC",
+            i5_b: "GTGCCCGACA"
+          },
+          C5: {
+            i7: "TCCGTTGGAT",
+            i5_a: "ACGTTCTCGC",
+            i5_b: "GCGAGAACGT"
+          },
+          C6: {
+            i7: "ACGACTACCA",
+            i5_a: "ACGACCCTAA",
+            i5_b: "TTAGGGTCGT"
+          },
+          C7: {
+            i7: "CGCGCACTTA",
+            i5_a: "CCTGTATTCT",
+            i5_b: "AGAATACAGG"
+          },
+          C8: {
+            i7: "GCTACAAAGC",
+            i5_a: "CACGTGCCCT",
+            i5_b: "AGGGCACGTG"
+          },
+          C9: {
+            i7: "TATCAGCCTA",
+            i5_a: "GTTTCGTCCT",
+            i5_b: "AGGACGAAAC"
+          },
+          C10: {
+            i7: "AGAATGGTTT",
+            i5_a: "GAGGGTGGGA",
+            i5_b: "TCCCACCCTC"
+          },
+          C11: {
+            i7: "ATGGGTGAAA",
+            i5_a: "CTTGGGAATT",
+            i5_b: "AATTCCCAAG"
+          },
+          C12: {
+            i7: "TCGTCAAGAT",
+            i5_a: "GCAACTCAGG",
+            i5_b: "CCTGAGTTGC"
+          },
+          D1: {
+            i7: "TGCAATGTTC",
+            i5_a: "GCTTGTCGAA",
+            i5_b: "TTCGACAAGC"
+          },
+          D2: {
+            i7: "TTAATACGCG",
+            i5_a: "CACCTCGGGT",
+            i5_b: "ACCCGAGGTG"
+          },
+          D3: {
+            i7: "CCTTCTAGAG",
+            i5_a: "AATACAACGA",
+            i5_b: "TCGTTGTATT"
+          },
+          D4: {
+            i7: "GCAGTATAGG",
+            i5_a: "TTCCGTGCAC",
+            i5_b: "GTGCACGGAA"
+          },
+          D5: {
+            i7: "TGGTTCGGGT",
+            i5_a: "GTGGCAGGAG",
+            i5_b: "CTCCTGCCAC"
+          },
+          D6: {
+            i7: "CCCAGCTTCT",
+            i5_a: "GACACCAAAC",
+            i5_b: "GTTTGGTGTC"
+          },
+          D7: {
+            i7: "CCTGTCAGGG",
+            i5_a: "AGCCCGTAAC",
+            i5_b: "GTTACGGGCT"
+          },
+          D8: {
+            i7: "CGCTGAAATC",
+            i5_a: "AGGTGTCTGC",
+            i5_b: "GCAGACACCT"
+          },
+          D9: {
+            i7: "TGGTCCCAAG",
+            i5_a: "CCTCTGGCGT",
+            i5_b: "ACGCCAGAGG"
+          },
+          D10: {
+            i7: "ATGCGAATGG",
+            i5_a: "ACAAGTGTCG",
+            i5_b: "CGACACTTGT"
+          },
+          D11: {
+            i7: "CGAATATTCG",
+            i5_a: "CTGGAAGCAA",
+            i5_b: "TTGCTTCCAG"
+          },
+          D12: {
+            i7: "GAATTGGTTA",
+            i5_a: "ACTCTAGTAG",
+            i5_b: "CTACTAGAGT"
+          },
+          E1: {
+            i7: "TTATTCGAGG",
+            i5_a: "CTGTCCTGCT",
+            i5_b: "AGCAGGACAG"
+          },
+          E2: {
+            i7: "ATGGAGGGAG",
+            i5_a: "ATAACCCATT",
+            i5_b: "AATGGGTTAT"
+          },
+          E3: {
+            i7: "ACCAGACAAC",
+            i5_a: "AGGAACTAGG",
+            i5_b: "CCTAGTTCCT"
+          },
+          E4: {
+            i7: "AACCACGCAT",
+            i5_a: "ATTCAGGTTA",
+            i5_b: "TAACCTGAAT"
+          },
+          E5: {
+            i7: "CGCGGTAGGT",
+            i5_a: "CAGGATGTTG",
+            i5_b: "CAACATCCTG"
+          },
+          E6: {
+            i7: "TTGAGAGTCA",
+            i5_a: "AACCTGGTAG",
+            i5_b: "CTACCAGGTT"
+          },
+          E7: {
+            i7: "GTCCTTCGGC",
+            i5_a: "TCATGCACAG",
+            i5_b: "CTGTGCATGA"
+          },
+          E8: {
+            i7: "GAGCAAGGGC",
+            i5_a: "ATTGACTTGG",
+            i5_b: "CCAAGTCAAT"
+          },
+          E9: {
+            i7: "TGTCCCAACG",
+            i5_a: "TCGATGTCCA",
+            i5_b: "TGGACATCGA"
+          },
+          E10: {
+            i7: "CACAATCCCA",
+            i5_a: "ATATCCACAA",
+            i5_b: "TTGTGGATAT"
+          },
+          E11: {
+            i7: "TCCGGGACAA",
+            i5_a: "GTGAATGCCA",
+            i5_b: "TGGCATTCAC"
+          },
+          E12: {
+            i7: "CGTCCACCTG",
+            i5_a: "CATTCATGAC",
+            i5_b: "GTCATGAATG"
+          },
+          F1: {
+            i7: "AAGATTGGAT",
+            i5_a: "AGCGGGATTT",
+            i5_b: "AAATCCCGCT"
+          },
+          F2: {
+            i7: "AAGGGCCGCA",
+            i5_a: "CTGATTCCTC",
+            i5_b: "GAGGAATCAG"
+          },
+          F3: {
+            i7: "GAGAGGATAT",
+            i5_a: "TTGAAATGGG",
+            i5_b: "CCCATTTCAA"
+          },
+          F4: {
+            i7: "CCCACCACAA",
+            i5_a: "ACCTCCGCTT",
+            i5_b: "AAGCGGAGGT"
+          },
+          F5: {
+            i7: "CGGCTGGATG",
+            i5_a: "TGATAAGCAC",
+            i5_b: "GTGCTTATCA"
+          },
+          F6: {
+            i7: "TTGCCCGTGC",
+            i5_a: "GCGTGAGATT",
+            i5_b: "AATCTCACGC"
+          },
+          F7: {
+            i7: "AATGTATCCA",
+            i5_a: "AATGAGCTTA",
+            i5_b: "TAAGCTCATT"
+          },
+          F8: {
+            i7: "CTCCTTTAGA",
+            i5_a: "GACATAGCTC",
+            i5_b: "GAGCTATGTC"
+          },
+          F9: {
+            i7: "GTCCCATCAA",
+            i5_a: "CGAACGTGAC",
+            i5_b: "GTCACGTTCG"
+          },
+          F10: {
+            i7: "CCGGCAACTG",
+            i5_a: "CGGTTTAACA",
+            i5_b: "TGTTAAACCG"
+          },
+          F11: {
+            i7: "TTCACACCTT",
+            i5_a: "TAGTGTACAC",
+            i5_b: "GTGTACACTA"
+          },
+          F12: {
+            i7: "GAGACGCACG",
+            i5_a: "CTATGAACAT",
+            i5_b: "ATGTTCATAG"
+          },
+          G1: {
+            i7: "TGTAGTCATT",
+            i5_a: "CTTGATCGTA",
+            i5_b: "TACGATCAAG"
+          },
+          G2: {
+            i7: "CATGTGGGTT",
+            i5_a: "GATTCCTTTA",
+            i5_b: "TAAAGGAATC"
+          },
+          G3: {
+            i7: "ATGACGTCGC",
+            i5_a: "AGGTCAGGAT",
+            i5_b: "ATCCTGACCT"
+          },
+          G4: {
+            i7: "GCGCTTATGG",
+            i5_a: "GCCTGGCTAG",
+            i5_b: "CTAGCCAGGC"
+          },
+          G5: {
+            i7: "ATAGGGCGAG",
+            i5_a: "TGCATCGAGT",
+            i5_b: "ACTCGATGCA"
+          },
+          G6: {
+            i7: "GCGGGTAAGT",
+            i5_a: "TAGCACTAAG",
+            i5_b: "CTTAGTGCTA"
+          },
+          G7: {
+            i7: "GTTTCACGAT",
+            i5_a: "TTCGGCCAAA",
+            i5_b: "TTTGGCCGAA"
+          },
+          G8: {
+            i7: "TAAGCAACTG",
+            i5_a: "CTATACTCAA",
+            i5_b: "TTGAGTATAG"
+          },
+          G9: {
+            i7: "CCGGAGGAAG",
+            i5_a: "TGCGGATGTT",
+            i5_b: "AACATCCGCA"
+          },
+          G10: {
+            i7: "ACTTTACGTG",
+            i5_a: "TGAACGCCCT",
+            i5_b: "AGGGCGTTCA"
+          },
+          G11: {
+            i7: "GATAACCTGC",
+            i5_a: "CATTAGAAAC",
+            i5_b: "GTTTCTAATG"
+          },
+          G12: {
+            i7: "CTTGCATAAA",
+            i5_a: "ATCAGGGCTT",
+            i5_b: "AAGCCCTGAT"
+          },
+          H1: {
+            i7: "ACAATGTGAA",
+            i5_a: "CGTACCGTTA",
+            i5_b: "TAACGGTACG"
+          },
+          H2: {
+            i7: "TAGCATAGTG",
+            i5_a: "CGGCTCTGTC",
+            i5_b: "GACAGAGCCG"
+          },
+          H3: {
+            i7: "CCCGTTCTCG",
+            i5_a: "GACGGATTGG",
+            i5_b: "CCAATCCGTC"
+          },
+          H4: {
+            i7: "AGTTTCCTGG",
+            i5_a: "TGCCACACAG",
+            i5_b: "CTGTGTGGCA"
+          },
+          H5: {
+            i7: "AGCAAGAAGC",
+            i5_a: "TTGTGTTTCT",
+            i5_b: "AGAAACACAA"
+          },
+          H6: {
+            i7: "CCTATCCTCG",
+            i5_a: "GAATACTAAC",
+            i5_b: "GTTAGTATTC"
+          },
+          H7: {
+            i7: "ACCTCGAGCT",
+            i5_a: "TGTGTTCGAT",
+            i5_b: "ATCGAACACA"
+          },
+          H8: {
+            i7: "ATAAGGATAC",
+            i5_a: "ATAGATAGGG",
+            i5_b: "CCCTATCTAT"
+          },
+          H9: {
+            i7: "AGAACTTAGA",
+            i5_a: "CGAGTCCTTT",
+            i5_b: "AAAGGACTCG"
+          },
+          H10: {
+            i7: "TTATCTAGGG",
+            i5_a: "AAAGGCTCTA",
+            i5_b: "TAGAGCCTTT"
+          },
+          H11: {
+            i7: "ACAATCGATC",
+            i5_a: "TGACGGAATG",
+            i5_b: "CATTCCGTCA"
+          },
+          H12: {
+            i7: "TGATGATTCA",
+            i5_a: "GTAGGAGTCG",
+            i5_b: "CGACTCCTAC"
+          }
+        }
+      }
     };
   }
 });
@@ -20172,7 +21657,7 @@ var {
 } = import_index.default;
 
 // src/commands/init.js
-import { readFile as readFile3, readdir as readdir2, access as access4 } from "node:fs/promises";
+import { readFile as readFile4, readdir as readdir2, access as access4 } from "node:fs/promises";
 import { constants as constants4 } from "node:fs";
 import { join as join4, resolve as resolve2 } from "node:path";
 
@@ -23518,6 +25003,140 @@ async function isExecutable(p) {
   }
 }
 
+// src/core/kits-10x.js
+var _kits = null;
+async function loadKits() {
+  if (_kits) return _kits;
+  const { default: data } = await Promise.resolve().then(() => (init_x_kits(), x_kits_exports));
+  _kits = data;
+  return _kits;
+}
+function kitsLoaded() {
+  if (!_kits) throw new Error("loadKits() must be awaited before kits() is called");
+  return _kits;
+}
+var _lookups = null;
+function lookups() {
+  if (_lookups) return _lookups;
+  const kits = kitsLoaded();
+  _lookups = {};
+  for (const [id, kit] of Object.entries(kits)) {
+    const A = /* @__PURE__ */ new Map();
+    const B = /* @__PURE__ */ new Map();
+    for (const [well, idx] of Object.entries(kit.wells)) {
+      A.set(`${idx.i7}|${idx.i5_a}`, well);
+      B.set(`${idx.i7}|${idx.i5_b}`, well);
+    }
+    _lookups[id] = { A, B, kit };
+  }
+  return _lookups;
+}
+function detectKit(rows) {
+  const cols = resolveColumns(rows);
+  if (!cols.index || !cols.index2 || rows.length === 0) return [];
+  const lk = lookups();
+  const candidates = [];
+  for (const [id, { A, B, kit }] of Object.entries(lk)) {
+    for (const [workflow, map] of [["A", A], ["B", B]]) {
+      const hits = [];
+      const misses = [];
+      rows.forEach((r, i) => {
+        const i7 = String(r[cols.index] ?? "").toUpperCase();
+        const i5 = String(r[cols.index2] ?? "").toUpperCase();
+        const well = map.get(`${i7}|${i5}`);
+        if (well) hits.push({ rowIndex: i, well });
+        else misses.push(i);
+      });
+      if (hits.length === 0) continue;
+      candidates.push({
+        id,
+        name: kit.name,
+        workflow,
+        matched: hits.length,
+        total: rows.length,
+        hits,
+        misses
+      });
+    }
+  }
+  candidates.sort((a, b) => b.matched - a.matched);
+  return candidates;
+}
+function swapKit(rows, { fromKit, toKit, workflow, targetWorkflow }) {
+  const cols = resolveColumns(rows);
+  if (!cols.index || !cols.index2) {
+    throw new Error("swapKit: rows have no index/index2 columns");
+  }
+  const kits = kitsLoaded();
+  if (!kits[fromKit]) throw new Error(`unknown source kit: ${fromKit}`);
+  if (!kits[toKit]) throw new Error(`unknown target kit: ${toKit}`);
+  const lk = lookups();
+  const map = lk[fromKit][workflow === "B" ? "B" : "A"];
+  const tgt = kits[toKit].wells;
+  const tgtField = (targetWorkflow ?? workflow ?? "A") === "B" ? "i5_b" : "i5_a";
+  const out = [];
+  const swapped = [];
+  const unmatched = [];
+  rows.forEach((r, i) => {
+    const i7 = String(r[cols.index] ?? "").toUpperCase();
+    const i5 = String(r[cols.index2] ?? "").toUpperCase();
+    const well = map.get(`${i7}|${i5}`);
+    if (!well || !tgt[well]) {
+      unmatched.push({ rowIndex: i, sampleId: cols.sampleId ? r[cols.sampleId] : null });
+      out.push(r);
+      return;
+    }
+    const next = { ...r };
+    next[cols.index] = tgt[well].i7;
+    next[cols.index2] = tgt[well][tgtField];
+    out.push(next);
+    swapped.push({ rowIndex: i, sampleId: cols.sampleId ? r[cols.sampleId] : null, well });
+  });
+  return { rows: out, swapped, unmatched };
+}
+function detectKitFromUnknowns(unknownRows, { topN = 100, minReads = 0 } = {}) {
+  if (!unknownRows || unknownRows.length === 0) return [];
+  const lk = lookups();
+  const sample = [...unknownRows].filter((r) => r.reads >= minReads).sort((a, b) => (b.reads || 0) - (a.reads || 0)).slice(0, topN);
+  const candidates = [];
+  for (const [id, { A, B, kit }] of Object.entries(lk)) {
+    for (const [workflow, map] of [["A", A], ["B", B]]) {
+      let matched = 0;
+      let readsMatched = 0;
+      const wells = /* @__PURE__ */ new Set();
+      for (const u of sample) {
+        const key = `${(u.index || "").toUpperCase()}|${(u.index2 || "").toUpperCase()}`;
+        const well = map.get(key);
+        if (well) {
+          matched++;
+          readsMatched += u.reads || 0;
+          wells.add(well);
+        }
+      }
+      if (matched === 0) continue;
+      candidates.push({
+        id,
+        name: kit.name,
+        workflow,
+        matched,
+        sampled: sample.length,
+        readsMatched,
+        wellCount: wells.size
+      });
+    }
+  }
+  candidates.sort((a, b) => b.readsMatched - a.readsMatched);
+  return candidates;
+}
+function listKits() {
+  return Object.entries(kitsLoaded()).map(([id, k]) => ({
+    id,
+    name: k.name,
+    pn: k.pn,
+    wellCount: Object.keys(k.wells).length
+  }));
+}
+
 // node_modules/csv-stringify/lib/utils/get.js
 var charCodeOfDot = ".".charCodeAt(0);
 var reEscapeChar = /\\(\\)?/g;
@@ -26703,6 +28322,7 @@ function detectIllegalIds(rows, sampleIdCol) {
 }
 
 // src/commands/run.js
+import { readFile as readFile3 } from "node:fs/promises";
 var FALLBACK_BCL = "~/bin/bclConvert/usr/bin/bcl-convert";
 async function runRun(stateDir, opts = {}) {
   const paths = await loadPaths(stateDir);
@@ -26766,6 +28386,8 @@ ${sym.warn} caught Ctrl-C; forwarding to bcl-convert\u2026`);
     console.log(`  ${c.dim("output:")} ${paths.outputDir}`);
     console.log(`  ${c.dim("logs:")}   ${paths.paths.bclStdout}`);
     console.log("");
+    await suggestKitFixIfMismatched(paths).catch(() => {
+    });
     console.log(`${sym.info} ${c.dim("rescue if needed:")} ${c.cyan("demux rescue")} ${paths.base}`);
   } else {
     console.log(`${sym.err} ${c.bold(`bcl-convert exited with code ${code}`)} ${c.dim(`(${dt})`)}`);
@@ -26812,6 +28434,32 @@ async function handleExistingOutput(outputDir, opts) {
 }
 function expandHome(p) {
   return p.startsWith("~/") ? join3(homedir2(), p.slice(2)) : p;
+}
+async function suggestKitFixIfMismatched(paths) {
+  const topPath = join3(paths.outputDir, "Reports", "TopUnknownBarcodes.csv");
+  let topText;
+  try {
+    topText = await readFile3(topPath, "utf-8");
+  } catch {
+    return;
+  }
+  const top = parseTopUnknown(topText);
+  if (top.length === 0) return;
+  await loadKits();
+  const sheetText = await readFile3(paths.samplesheet, "utf-8");
+  const sheet = parseSampleSheet(sheetText);
+  const sheetKit = detectKit(sheet.data)[0] ?? null;
+  const unknownKit = detectKitFromUnknowns(top, { topN: 100 })[0] ?? null;
+  if (!unknownKit) return;
+  if (sheetKit && sheetKit.id === unknownKit.id && sheetKit.workflow === unknownKit.workflow) return;
+  if (unknownKit.readsMatched < 1e3) return;
+  console.log(`${sym.warn} ${c.bold("top unknown barcodes fingerprint as a different 10x kit:")}`);
+  console.log(`  ${c.dim("samplesheet kit:")}  ${sheetKit ? `${c.bold(sheetKit.id)} workflow ${sheetKit.workflow}` : c.dim("(none detected)")}`);
+  console.log(`  ${c.dim("unknown reads kit:")} ${c.bold(unknownKit.id)} workflow ${unknownKit.workflow}  ${c.muted(`(${unknownKit.readsMatched.toLocaleString()} reads, ${unknownKit.wellCount} wells)`)}`);
+  if (sheetKit) {
+    console.log(`  ${c.cyan("fix:")} ${c.cyan("demux fix-indices")} ${paths.base} ${c.dim(`--from-kit ${sheetKit.id} --to-kit ${unknownKit.id}`)}`);
+  }
+  console.log("");
 }
 function formatDuration(ms) {
   const s = Math.round(ms / 1e3);
@@ -26959,10 +28607,10 @@ async function runInit(rundir, opts = {}) {
   const spin = ora({ text: "Parsing run metadata\u2026", spinner: "dots" }).start();
   let runInfo, samplesheet;
   try {
-    const runInfoText = await readFile3(join4(rundirAbs, "RunInfo.xml"), "utf-8");
+    const runInfoText = await readFile4(join4(rundirAbs, "RunInfo.xml"), "utf-8");
     runInfo = parseRunInfo(runInfoText);
     const sheetPath = opts.samplesheet ? resolve2(opts.samplesheet) : join4(rundirAbs, "SampleSheet.csv");
-    const sheetText = await readFile3(sheetPath, "utf-8");
+    const sheetText = await readFile4(sheetPath, "utf-8");
     samplesheet = parseSampleSheet(sheetText);
     spin.succeed(`Parsed RunInfo + SampleSheet (${c.bold(samplesheet.data.length)} samples)`);
   } catch (e) {
@@ -26971,6 +28619,7 @@ async function runInit(rundir, opts = {}) {
   }
   process.stdout.write(header(`demux init`, `${runInfo.runId}`));
   process.stdout.write(runSummary(runInfo, samplesheet) + "\n\n");
+  await reportKitDetection(samplesheet);
   console.log(step(2, TOTAL_STEPS, "bcl-convert binary"));
   const bcl = await chooseBclConvert(samplesheet, opts);
   console.log("\n" + step(3, TOTAL_STEPS, "Sample selection"));
@@ -27183,7 +28832,7 @@ async function rescueFromTopUnknown(rows, topUnknownPath, runInfo, opts) {
   } catch {
     throw errors.noTopUnknown(resolved);
   }
-  const text = await readFile3(resolved, "utf-8");
+  const text = await readFile4(resolved, "utf-8");
   const topUnknown = parseTopUnknown(text);
   console.log(`  ${sym.info} loaded ${c.bold(topUnknown.length)} unknown barcodes from ${c.dim(resolved)}`);
   const n = opts.matchLen ?? 8;
@@ -27378,6 +29027,39 @@ function reportVersionMatch(declared, installed) {
     console.log(`  ${sym.warn} version mismatch: samplesheet says ${c.bold(declared)}, installed is ${c.bold(installed)}`);
   }
 }
+async function reportKitDetection(samplesheet) {
+  await loadKits();
+  const detections = detectKit(samplesheet.data);
+  if (detections.length === 0) return;
+  const top = detections[0];
+  const perfect = top.matched === top.total;
+  const partial = !perfect && top.matched / top.total >= 0.3;
+  if (!perfect && !partial) return;
+  const tag = perfect ? c.ok(`\u2713 ${top.matched}/${top.total}`) : c.warn(`! ${top.matched}/${top.total}`);
+  console.log(`${sym.info} 10x kit: ${c.bold(top.id)} workflow ${top.workflow}  ${c.muted(top.name)}  ${tag}`);
+  const declared = inferDeclaredKitFromSampleIds(samplesheet.data);
+  if (declared && declared !== top.id.split("-")[0]) {
+    console.log(`  ${sym.warn} ${c.bold(`Sample_IDs mention "${declared}" but barcodes are from ${top.id.split("-")[0]}`)}`);
+    console.log(`  ${c.dim("if this is a mistake, fix with:")} ${c.cyan("demux fix-indices ./<state-dir> --to-kit " + declared + "-A")}`);
+  }
+  if (!perfect) {
+    console.log(`  ${c.dim(`${top.total - top.matched} row(s) did not match this kit; review the samplesheet`)}`);
+  }
+  console.log("");
+}
+function inferDeclaredKitFromSampleIds(rows) {
+  const cols = Object.keys(rows[0] ?? {});
+  const idCol = cols.find((k) => k.toLowerCase() === "sample_id") ?? "Sample_ID";
+  const tally = /* @__PURE__ */ new Map();
+  for (const r of rows) {
+    const id = String(r[idCol] ?? "");
+    const m = id.match(/SI-([A-Z]{2})-/i);
+    if (m) tally.set(m[1].toUpperCase(), (tally.get(m[1].toUpperCase()) ?? 0) + 1);
+  }
+  if (tally.size === 0) return null;
+  const [top] = [...tally.entries()].sort((a, b) => b[1] - a[1]);
+  return top[0];
+}
 function handlePerLaneOverrideCycles(rows) {
   const variants = uniquePerLaneOverrides(rows);
   console.log(`  ${sym.info} per-lane OverrideCycles found in [BCLConvert_Data]:`);
@@ -27389,7 +29071,7 @@ function handlePerLaneOverrideCycles(rows) {
 }
 
 // src/commands/rescue.js
-import { readFile as readFile4, access as access5 } from "node:fs/promises";
+import { readFile as readFile5, access as access5 } from "node:fs/promises";
 import { constants as constants5 } from "node:fs";
 import { join as join5, resolve as resolve3 } from "node:path";
 var TOTAL_STEPS2 = 5;
@@ -27403,7 +29085,7 @@ async function runRescue(prevDir, opts = {}) {
   console.log("\n" + step(2, TOTAL_STEPS2, "Locating TopUnknownBarcodes.csv"));
   const topPath = await resolveTopUnknownPath(prev, opts);
   console.log(`  ${sym.ok} ${c.dim(topPath)}`);
-  const topText = await readFile4(topPath, "utf-8");
+  const topText = await readFile5(topPath, "utf-8");
   const topUnknown = parseTopUnknown(topText);
   console.log(`  ${sym.info} ${c.bold(topUnknown.length)} unknown barcodes`);
   console.log("\n" + step(3, TOTAL_STEPS2, "Prefix-matching against samplesheet"));
@@ -27503,7 +29185,7 @@ async function loadPrevState(prevAbs) {
     });
   }
   const decisions = await readDecisions(statePaths.paths.decisions);
-  const sheetText = await readFile4(statePaths.samplesheet, "utf-8");
+  const sheetText = await readFile5(statePaths.samplesheet, "utf-8");
   const samplesheet = parseSampleSheet(sheetText);
   return { statePaths, decisions, samplesheet };
 }
@@ -27587,8 +29269,168 @@ function formatFilter(crit) {
   return parts.length ? parts.join(" ") : c.dim("(none)");
 }
 
+// src/commands/fix-indices.js
+import { readFile as readFile6 } from "node:fs/promises";
+async function runFixIndices(stateDirArg, opts = {}) {
+  const paths = await loadPaths2(stateDirArg);
+  const decisions = await readDecisions(paths.paths.decisions);
+  await loadKits();
+  process.stdout.write(header("demux fix-indices", decisions.runId));
+  const sheetText = await readFile6(paths.samplesheet, "utf-8");
+  const sheet = parseSampleSheet(sheetText);
+  const data = sheet.data;
+  const detections = detectKit(data);
+  if (detections.length === 0) {
+    throw new DemuxError("No known 10x kit matches the samplesheet barcodes", {
+      code: "E_KIT_NOT_DETECTED",
+      context: [`${data.length} samples scanned; no fingerprint matched ${listKits().length} known kits`],
+      hint: "Add a kit CSV to ./kits/ (or wherever your scripts/build-10x-kits.mjs reads from) and rebuild."
+    });
+  }
+  const top = detections[0];
+  const perfect = top.matched === top.total;
+  console.log(`${sym.info} ${c.bold("detected kit")}`);
+  for (const cand of detections.slice(0, 3)) {
+    const tag = cand === top ? c.ok("  \u2190 top") : "";
+    console.log(`  ${c.dim("\xB7")} ${c.bold(cand.id)} workflow ${cand.workflow}  ${c.muted(`(${cand.matched}/${cand.total} rows)`)}  ${cand.name}${tag}`);
+  }
+  if (!perfect) {
+    console.log(`  ${sym.warn} only ${top.matched}/${top.total} match the top candidate \u2014 review carefully`);
+  }
+  const kits = listKits();
+  const fromKitId = opts.fromKit ?? top.id;
+  const fromWorkflow = opts.workflow ?? top.workflow;
+  if (!kits.find((k) => k.id === fromKitId)) {
+    throw new DemuxError(`Unknown --from-kit: ${fromKitId}`, {
+      code: "E_UNKNOWN_KIT",
+      context: [`known kits: ${kits.map((k) => k.id).join(", ")}`]
+    });
+  }
+  let toKitId = opts.toKit;
+  if (!toKitId) {
+    const choices = kits.filter((k) => k.id !== fromKitId).map((k) => ({ name: `${k.id}  ${c.muted("\xB7")}  ${k.name}`, value: k.id }));
+    toKitId = await selectOne(`Swap ${fromKitId} \u2192 which kit?`, choices);
+  } else if (!kits.find((k) => k.id === toKitId)) {
+    throw new DemuxError(`Unknown --to-kit: ${toKitId}`, {
+      code: "E_UNKNOWN_KIT",
+      context: [`known kits: ${kits.map((k) => k.id).join(", ")}`]
+    });
+  }
+  const targetWorkflow = opts.targetWorkflow ?? fromWorkflow;
+  const swap = swapKit(data, {
+    fromKit: fromKitId,
+    toKit: toKitId,
+    workflow: fromWorkflow,
+    targetWorkflow
+  });
+  console.log("");
+  console.log(divider("Swap summary"));
+  console.log(`  ${c.label("from")} ${fromKitId} (workflow ${fromWorkflow})`);
+  console.log(`  ${c.label("to")}   ${toKitId} (workflow ${targetWorkflow})`);
+  console.log(`  ${c.label("swapped")} ${c.bold(swap.swapped.length)} samples`);
+  if (swap.unmatched.length) {
+    console.log(`  ${c.label("unchanged")} ${c.warn(swap.unmatched.length)} (no match in ${fromKitId}):`);
+    for (const u of swap.unmatched.slice(0, 5)) {
+      console.log(`    ${c.dim("\xB7")} row ${u.rowIndex + 1}${u.sampleId ? ` (${u.sampleId})` : ""}`);
+    }
+    if (swap.unmatched.length > 5) console.log(c.dim(`    \xB7 \u2026and ${swap.unmatched.length - 5} more`));
+  }
+  console.log("");
+  console.log(divider("Preview (first 10 rows)"));
+  console.log(samplesheetPreview(swap.rows, 10));
+  console.log("");
+  const proceed = opts.yes || await confirm("Write fixed samplesheet to a new state dir?", { default: true });
+  if (!proceed) {
+    console.log(`${sym.warn} aborted; no files written.`);
+    return;
+  }
+  const newBase = await nextFixName(paths.base);
+  const parentDir = paths.base.replace(/\/[^/]+\/?$/, "") || ".";
+  const newName = newBase.split("/").pop();
+  const newState = await createStateDir(newName, { cwd: parentDir });
+  const finalCsv = serializeSampleSheet(sheet, {
+    data: swap.rows,
+    overrideCycles: decisions.overrideCycles ?? void 0,
+    dropSettings: decisions.strippedSettings ?? [],
+    keepAllSettings: false
+  });
+  const writes = [
+    writeText(newState.samplesheet, finalCsv),
+    writeText(newState.paths.original, sheet.raw),
+    writeText(newState.paths.filtered, finalCsv),
+    writeText(newState.paths.final, finalCsv),
+    writeDecisions(newState.paths.decisions, {
+      command: "fix-indices",
+      derivedFrom: paths.base,
+      rundir: decisions.rundir,
+      runId: decisions.runId,
+      filterCriteria: decisions.filterCriteria,
+      overrideCycles: decisions.overrideCycles,
+      perLaneOverrideCycles: decisions.perLaneOverrideCycles,
+      reverseComplement: decisions.reverseComplement,
+      rescue: decisions.rescue,
+      substitutions: decisions.substitutions,
+      sbatch: decisions.sbatch,
+      bclConvert: decisions.bclConvert,
+      strippedSettings: decisions.strippedSettings,
+      fixIndices: {
+        fromKit: fromKitId,
+        fromWorkflow,
+        toKit: toKitId,
+        targetWorkflow,
+        swapped: swap.swapped.length,
+        unmatched: swap.unmatched.length
+      }
+    })
+  ];
+  if (decisions.sbatch) {
+    const sbatchText = renderSbatch({
+      ...decisions.sbatch,
+      JOB_TAG: `${decisions.runId}-fix`,
+      RUNDIR: decisions.rundir,
+      OUTPUT_DIR: newState.outputDir,
+      SAMPLESHEET: newState.samplesheet,
+      STATE_DIR: newState.stateDir,
+      BCL_CONVERT_PATH: decisions.bclConvert?.path ?? "~/bin/bclConvert/usr/bin/bcl-convert"
+    });
+    writes.push(writeText(newState.sbatch, sbatchText));
+  }
+  await Promise.all(writes);
+  console.log(`  ${sym.ok} samplesheet ${c.dim(newState.samplesheet)}`);
+  if (decisions.sbatch) console.log(`  ${sym.ok} sbatch      ${c.dim(newState.sbatch)}`);
+  console.log(`  ${sym.ok} state dir   ${c.dim(newState.stateDir)}`);
+  console.log("");
+  console.log(c.brand(`${sym.ok} next`));
+  if (decisions.sbatch) console.log(`  ${c.cyan("sbatch")} ${newState.sbatch}`);
+  console.log(`  ${c.dim("or:")}     ${c.cyan("demux run")} ${newState.base}`);
+  console.log("");
+}
+async function loadPaths2(stateDir) {
+  try {
+    return await existingStateDir(stateDir);
+  } catch {
+    throw new DemuxError(`No .demux state dir found in ${stateDir}`, {
+      code: "E_NO_STATE",
+      hint: "Point at a directory created by `demux init` or `demux rescue`."
+    });
+  }
+}
+async function nextFixName(prevBase) {
+  const baseName = prevBase.replace(/\/+$/, "");
+  for (let i = 1; i < 100; i++) {
+    const candidate = `${baseName}-fixed-${i}`;
+    try {
+      const fs = await import("node:fs/promises");
+      await fs.access(candidate);
+    } catch {
+      return candidate;
+    }
+  }
+  throw new Error("Too many fix attempts \u2014 stopping at 99");
+}
+
 // src/bin/demux.js
-var VERSION = true ? "0.2.4" : (await null).then((fs) => fs.readFile(new URL("../../package.json", import.meta.url), "utf-8")).then((s) => JSON.parse(s).version).catch(() => "0.0.0-dev");
+var VERSION = true ? "0.3.0" : (await null).then((fs) => fs.readFile(new URL("../../package.json", import.meta.url), "utf-8")).then((s) => JSON.parse(s).version).catch(() => "0.0.0-dev");
 var program2 = new Command();
 program2.name("demux").description("Interactive CLI for Illumina BCL-convert demultiplexing on HPC").version(VERSION);
 program2.command("init").description("Fresh demux: filter samples, choose cycles/RC, optionally rescue, emit samplesheet + sbatch (or --run inline)").argument("<rundir>", "path to the Illumina run directory (contains RunInfo.xml + SampleSheet.csv)").option("-s, --samplesheet <path>", "override samplesheet path (defaults to <rundir>/SampleSheet.csv)").option("-u, --top-unknown <path>", "TopUnknownBarcodes.csv from a prior demux, for inline rescue").option("-n, --match-len <n>", "prefix-match length for rescue (default 8)", (v) => parseInt(v, 10)).option("--run", "after generating the samplesheet, run bcl-convert inline instead of emitting sbatch").option("--threads <n>", "thread count for inline run (default: $SLURM_CPUS_PER_TASK or nproc-1)", (v) => parseInt(v, 10)).option("--bcl-convert <path>", "override path to bcl-convert binary").option("--force", "when --run is set, delete an existing output dir without prompting").option("--drop-settings <list>", "comma-separated BCLConvert_Settings keys to strip (in addition to the built-in known-bad list)").option("--keep-all-settings", "do not strip any unsupported BCLConvert_Settings (default: strip known-bad keys)").action(async (rundir, opts) => {
@@ -27608,6 +29450,13 @@ program2.command("rescue").description("Re-run after first demux: prefix-match a
 program2.command("run").description("Run bcl-convert inline against an existing state dir (tee output to .demux/bcl-convert.*.log)").argument("<run-dir>", "a directory created by `demux init` or `demux rescue`").option("--threads <n>", "thread count (default: $SLURM_CPUS_PER_TASK or nproc-1)", (v) => parseInt(v, 10)).option("--bcl-convert <path>", "override path to bcl-convert binary").option("--force", "delete an existing output dir without prompting").action(async (dir, opts) => {
   try {
     await runRun(dir, opts);
+  } catch (e) {
+    fail(e);
+  }
+});
+program2.command("fix-indices").description("Swap a 10x Single Cell index kit for another while preserving well positions (e.g. NN-A \u2192 TT-A when the wrong kit was written into the samplesheet)").argument("<run-dir>", "a directory created by `demux init` or `demux rescue`").option("--from-kit <id>", "source kit short-id (default: auto-detected from the samplesheet)").option("--to-kit <id>", "target kit short-id (prompted if omitted)").option("--workflow <A|B>", "i5 workflow of the source samplesheet (default: detected)").option("--target-workflow <A|B>", "i5 workflow to write into the new samplesheet (default: same as source)").option("-y, --yes", "skip the confirmation prompt").action(async (dir, opts) => {
+  try {
+    await runFixIndices(dir, opts);
   } catch (e) {
     fail(e);
   }

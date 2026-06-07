@@ -235,6 +235,48 @@ Run bcl-convert against an existing state dir (one created by `init` or `rescue`
 
 Use this for interactive runs (skip the SLURM queue) or to re-run after fixing a samplesheet error without re-going through prompts.
 
+### `demux fix-indices <run-dir>`
+
+When the wet lab ran library X but the techs wrote barcodes from kit Y into the samplesheet (same well numbers, different barcodes), the demux produces 100% Unknown reads. `fix-indices` swaps the barcodes for the same well positions using a bundled 10x kit database.
+
+| Flag | Description |
+|---|---|
+| `<run-dir>` (positional) | A state dir from `init`/`rescue`. |
+| `--from-kit <id>` | Source kit short-id (default: auto-detected from the samplesheet). Available: `TT-A`, `NN-A`, `NT-A` — add more by dropping CSVs in and rebuilding (see `scripts/build-10x-kits.mjs`). |
+| `--to-kit <id>` | Target kit short-id. Prompted if omitted. |
+| `--workflow <A\|B>` | i5 workflow of the source samplesheet (default: detected). Workflow A = Illumina forward strand; B = reverse complement (NovaSeq X, NextSeq, etc.). |
+| `--target-workflow <A\|B>` | i5 workflow to write into the new samplesheet (default: same as source). |
+| `-y, --yes` | Skip the confirmation prompt. |
+
+Example — your exact case: samplesheet has NN-A barcodes, library was made with TT-A:
+
+```bash
+demux fix-indices ./260507_LH00954_0008_A23K3HCLT3 --to-kit TT-A
+# auto-detects NN-A as the source, swaps to TT-A, writes ./260507_LH00954_0008_A23K3HCLT3-fixed-1/
+demux run ./260507_LH00954_0008_A23K3HCLT3-fixed-1
+```
+
+### 10x kit auto-detection
+
+`demux init` always fingerprints the data section against the bundled kit database and reports:
+
+```
+› 10x kit: NN-A workflow A  Single Cell 3' Dual Index Kit NN Set A  ✓ 96/96
+```
+
+If `Sample_ID` values encode a different kit (e.g., contain `SI-TT-…` but barcodes match NN), demux prints a `⚠` warning with the suggested `fix-indices` command before continuing.
+
+### Post-run hint
+
+After `demux run` finishes, demux peeks at `Reports/TopUnknownBarcodes.csv`. If the unknown reads fingerprint as a *different* known kit than the samplesheet, you get:
+
+```
+⚠ top unknown barcodes fingerprint as a different 10x kit:
+  samplesheet kit:   NN-A workflow A
+  unknown reads kit: TT-A workflow A  (87,432,109 reads, 16 wells)
+  fix: demux fix-indices ./<run-dir> --from-kit NN-A --to-kit TT-A
+```
+
 ### `demux status <run-dir>`
 
 Print a summary of an existing state dir: command, run ID, bcl-convert binary + version, override cycles (or per-lane variants), RC choices, filter criteria, rescue stats, stripped settings, and key paths.

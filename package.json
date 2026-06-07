@@ -1,6 +1,6 @@
 {
   "name": "demux",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Interactive CLI for Illumina BCL-convert demultiplexing on HPC",
   "repository": {
     "type": "git",

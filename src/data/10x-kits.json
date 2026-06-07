@@ -1,0 +1,1467 @@
+{
+  "NN-A": {
+    "name": "Single Cell 3' Dual Index Kit NN Set A",
+    "pn": [
+      "1000243"
+    ],
+    "wells": {
+      "A1": {
+        "i7": "GCCTTGTCAA",
+        "i5_a": "GATCCAATCA",
+        "i5_b": "TGATTGGATC"
+      },
+      "A2": {
+        "i7": "AACTTCTTTG",
+        "i5_a": "ATAAGCGGTA",
+        "i5_b": "TACCGCTTAT"
+      },
+      "A3": {
+        "i7": "TGGTTATAGA",
+        "i5_a": "GAGCTCATAA",
+        "i5_b": "TTATGAGCTC"
+      },
+      "A4": {
+        "i7": "GTAGTGCATC",
+        "i5_a": "ATTTGACGGT",
+        "i5_b": "ACCGTCAAAT"
+      },
+      "A5": {
+        "i7": "GCTTGATTTA",
+        "i5_a": "CGGGTGTGAC",
+        "i5_b": "GTCACACCCG"
+      },
+      "A6": {
+        "i7": "GAAGTTTCGC",
+        "i5_a": "TTTCAAAGCA",
+        "i5_b": "TGCTTTGAAA"
+      },
+      "A7": {
+        "i7": "GCAGTTGTTT",
+        "i5_a": "ACACTACTTT",
+        "i5_b": "AAAGTAGTGT"
+      },
+      "A8": {
+        "i7": "GCCGCAAGTA",
+        "i5_a": "AAAGGTCCGC",
+        "i5_b": "GCGGACCTTT"
+      },
+      "A9": {
+        "i7": "AAGTTGTATG",
+        "i5_a": "TGTACAATGC",
+        "i5_b": "GCATTGTACA"
+      },
+      "A10": {
+        "i7": "AGCAACCTTT",
+        "i5_a": "TTCAGCGCTA",
+        "i5_b": "TAGCGCTGAA"
+      },
+      "A11": {
+        "i7": "GACGAGGGTT",
+        "i5_a": "TTACTTTGAC",
+        "i5_b": "GTCAAAGTAA"
+      },
+      "A12": {
+        "i7": "TGAACAGTCG",
+        "i5_a": "ATTTCTCAGA",
+        "i5_b": "TCTGAGAAAT"
+      },
+      "B1": {
+        "i7": "CGAAAGGAGT",
+        "i5_a": "ACACCAAACA",
+        "i5_b": "TGTTTGGTGT"
+      },
+      "B2": {
+        "i7": "GAATGACTTG",
+        "i5_a": "TGAGCTCGCT",
+        "i5_b": "AGCGAGCTCA"
+      },
+      "B3": {
+        "i7": "GCCAGGGATT",
+        "i5_a": "CAAGTTTAGG",
+        "i5_b": "CCTAAACTTG"
+      },
+      "B4": {
+        "i7": "CTTTGTCCGC",
+        "i5_a": "GCTGTCCCGT",
+        "i5_b": "ACGGGACAGC"
+      },
+      "B5": {
+        "i7": "AGCTTGGGTG",
+        "i5_a": "AGCGTATAGT",
+        "i5_b": "ACTATACGCT"
+      },
+      "B6": {
+        "i7": "TCGCACCGGT",
+        "i5_a": "TAGCCTCAGG",
+        "i5_b": "CCTGAGGCTA"
+      },
+      "B7": {
+        "i7": "TTTAGGTAGG",
+        "i5_a": "ACTGAGGGAC",
+        "i5_b": "GTCCCTCAGT"
+      },
+      "B8": {
+        "i7": "GTTCGAGCGG",
+        "i5_a": "CTGTGGGTTT",
+        "i5_b": "AAACCCACAG"
+      },
+      "B9": {
+        "i7": "AGGGTATGGC",
+        "i5_a": "GAGTCCGACT",
+        "i5_b": "AGTCGGACTC"
+      },
+      "B10": {
+        "i7": "TACCCACTAT",
+        "i5_a": "TGGAACATAT",
+        "i5_b": "ATATGTTCCA"
+      },
+      "B11": {
+        "i7": "TTCAGGCTAC",
+        "i5_a": "CTGGGTATTG",
+        "i5_b": "CAATACCCAG"
+      },
+      "B12": {
+        "i7": "AGGAATAGAT",
+        "i5_a": "TGCGGTCACG",
+        "i5_b": "CGTGACCGCA"
+      },
+      "C1": {
+        "i7": "ACAGCGCTGT",
+        "i5_a": "GAGGGTCATC",
+        "i5_b": "GATGACCCTC"
+      },
+      "C2": {
+        "i7": "GACGTACGGA",
+        "i5_a": "ACCTCGCTTT",
+        "i5_b": "AAAGCGAGGT"
+      },
+      "C3": {
+        "i7": "CTTAGATGCA",
+        "i5_a": "CTATTCGACT",
+        "i5_b": "AGTCGAATAG"
+      },
+      "C4": {
+        "i7": "ACTCCTCAAC",
+        "i5_a": "ATTCACGGGA",
+        "i5_b": "TCCCGTGAAT"
+      },
+      "C5": {
+        "i7": "TCCATACTGT",
+        "i5_a": "GAGCGACTTC",
+        "i5_b": "GAAGTCGCTC"
+      },
+      "C6": {
+        "i7": "GCCAGAATGG",
+        "i5_a": "GAATTGTATC",
+        "i5_b": "GATACAATTC"
+      },
+      "C7": {
+        "i7": "ATTGCAAGAC",
+        "i5_a": "CGGTGACCAT",
+        "i5_b": "ATGGTCACCG"
+      },
+      "C8": {
+        "i7": "CAACATATCG",
+        "i5_a": "AACTAAAGGC",
+        "i5_b": "GCCTTTAGTT"
+      },
+      "C9": {
+        "i7": "CAGGGACCTC",
+        "i5_a": "AATAGCAGCA",
+        "i5_b": "TGCTGCTATT"
+      },
+      "C10": {
+        "i7": "ATTTGGGAAT",
+        "i5_a": "TCAGCCGAGT",
+        "i5_b": "ACTCGGCTGA"
+      },
+      "C11": {
+        "i7": "TGGATAATTG",
+        "i5_a": "TTTGTGATCA",
+        "i5_b": "TGATCACAAA"
+      },
+      "C12": {
+        "i7": "CAGATTATGA",
+        "i5_a": "GTGCCTGTAC",
+        "i5_b": "GTACAGGCAC"
+      },
+      "D1": {
+        "i7": "AATGGTAAGC",
+        "i5_a": "CTGTGAAGTT",
+        "i5_b": "AACTTCACAG"
+      },
+      "D2": {
+        "i7": "CATCCCTCGG",
+        "i5_a": "AGGGTAGGCG",
+        "i5_b": "CGCCTACCCT"
+      },
+      "D3": {
+        "i7": "CTGGTCCGTC",
+        "i5_a": "ACGAATAAGG",
+        "i5_b": "CCTTATTCGT"
+      },
+      "D4": {
+        "i7": "GTCGTAAATT",
+        "i5_a": "GTAGTAGGCT",
+        "i5_b": "AGCCTACTAC"
+      },
+      "D5": {
+        "i7": "CAACACTGAT",
+        "i5_a": "CAAACCAGGG",
+        "i5_b": "CCCTGGTTTG"
+      },
+      "D6": {
+        "i7": "CAGACTGAAT",
+        "i5_a": "TGCCTAACCG",
+        "i5_b": "CGGTTAGGCA"
+      },
+      "D7": {
+        "i7": "CGGACACGCT",
+        "i5_a": "TCACGATATA",
+        "i5_b": "TATATCGTGA"
+      },
+      "D8": {
+        "i7": "CTCGGCTCTC",
+        "i5_a": "TATACTTCCA",
+        "i5_b": "TGGAAGTATA"
+      },
+      "D9": {
+        "i7": "AAGCCTATCA",
+        "i5_a": "GTAGTGAACA",
+        "i5_b": "TGTTCACTAC"
+      },
+      "D10": {
+        "i7": "ACTGTGCCAA",
+        "i5_a": "TAACCGTTAT",
+        "i5_b": "ATAACGGTTA"
+      },
+      "D11": {
+        "i7": "CTACTCCCAT",
+        "i5_a": "TACGTTGCGG",
+        "i5_b": "CCGCAACGTA"
+      },
+      "D12": {
+        "i7": "AGACTCTAAC",
+        "i5_a": "GTGTCGATGT",
+        "i5_b": "ACATCGACAC"
+      },
+      "E1": {
+        "i7": "TGAGCCGGCA",
+        "i5_a": "TGCTGCATGT",
+        "i5_b": "ACATGCAGCA"
+      },
+      "E2": {
+        "i7": "TAGCTTGCGT",
+        "i5_a": "GCTGCTAAAG",
+        "i5_b": "CTTTAGCAGC"
+      },
+      "E3": {
+        "i7": "GTACACCGGG",
+        "i5_a": "AACAGTCGCG",
+        "i5_b": "CGCGACTGTT"
+      },
+      "E4": {
+        "i7": "CGCGTAGACG",
+        "i5_a": "AAAGTAGCTG",
+        "i5_b": "CAGCTACTTT"
+      },
+      "E5": {
+        "i7": "CCGATATATT",
+        "i5_a": "AACTATCCGA",
+        "i5_b": "TCGGATAGTT"
+      },
+      "E6": {
+        "i7": "TTGGGCGGGA",
+        "i5_a": "ATGTATCTGT",
+        "i5_b": "ACAGATACAT"
+      },
+      "E7": {
+        "i7": "GTTTATGAGG",
+        "i5_a": "GCCAAACAGC",
+        "i5_b": "GCTGTTTGGC"
+      },
+      "E8": {
+        "i7": "TTGGATACTC",
+        "i5_a": "CGTACTGAAG",
+        "i5_b": "CTTCAGTACG"
+      },
+      "E9": {
+        "i7": "GCTATCTATC",
+        "i5_a": "AAAGATGGAT",
+        "i5_b": "ATCCATCTTT"
+      },
+      "E10": {
+        "i7": "ATGTGATCGC",
+        "i5_a": "TGACCTACCT",
+        "i5_b": "AGGTAGGTCA"
+      },
+      "E11": {
+        "i7": "TCCTCACATG",
+        "i5_a": "AACAGATTCA",
+        "i5_b": "TGAATCTGTT"
+      },
+      "E12": {
+        "i7": "GCCTCCTAAT",
+        "i5_a": "CTCCTCCTGT",
+        "i5_b": "ACAGGAGGAG"
+      },
+      "F1": {
+        "i7": "CGAGGCTGAT",
+        "i5_a": "TCGACTTTCT",
+        "i5_b": "AGAAAGTCGA"
+      },
+      "F2": {
+        "i7": "CTCATGACAT",
+        "i5_a": "TGTTCCGCAC",
+        "i5_b": "GTGCGGAACA"
+      },
+      "F3": {
+        "i7": "AACGCGGCAA",
+        "i5_a": "GCCCGTTTAC",
+        "i5_b": "GTAAACGGGC"
+      },
+      "F4": {
+        "i7": "AACACCTCTC",
+        "i5_a": "GATTGTATGA",
+        "i5_b": "TCATACAATC"
+      },
+      "F5": {
+        "i7": "AAATAACGCG",
+        "i5_a": "ATAGAGGAGC",
+        "i5_b": "GCTCCTCTAT"
+      },
+      "F6": {
+        "i7": "GAAATCTTGT",
+        "i5_a": "TAGACGCCAC",
+        "i5_b": "GTGGCGTCTA"
+      },
+      "F7": {
+        "i7": "TAGATGGACT",
+        "i5_a": "CCAGGGATAT",
+        "i5_b": "ATATCCCTGG"
+      },
+      "F8": {
+        "i7": "CAATCTGTAT",
+        "i5_a": "TCCCATCGTT",
+        "i5_b": "AACGATGGGA"
+      },
+      "F9": {
+        "i7": "GCGAAAGTAT",
+        "i5_a": "GTGTCACAGA",
+        "i5_b": "TCTGTGACAC"
+      },
+      "F10": {
+        "i7": "CCCAGAGCTT",
+        "i5_a": "ATGCTGTAAT",
+        "i5_b": "ATTACAGCAT"
+      },
+      "F11": {
+        "i7": "GACTACAGGA",
+        "i5_a": "AGTGACAAAG",
+        "i5_b": "CTTTGTCACT"
+      },
+      "F12": {
+        "i7": "CAATTCATGG",
+        "i5_a": "ACGTAGTTCG",
+        "i5_b": "CGAACTACGT"
+      },
+      "G1": {
+        "i7": "TGGGAAGGGC",
+        "i5_a": "ACTAACGATG",
+        "i5_b": "CATCGTTAGT"
+      },
+      "G2": {
+        "i7": "TACTTCGCAT",
+        "i5_a": "AACGGTGTCG",
+        "i5_b": "CGACACCGTT"
+      },
+      "G3": {
+        "i7": "TAAACTGGCA",
+        "i5_a": "CCGACCTCTT",
+        "i5_b": "AAGAGGTCGG"
+      },
+      "G4": {
+        "i7": "TTGAAGAACT",
+        "i5_a": "CAACACCAGG",
+        "i5_b": "CCTGGTGTTG"
+      },
+      "G5": {
+        "i7": "TCCCTCGTCA",
+        "i5_a": "ATCAGGTGTG",
+        "i5_b": "CACACCTGAT"
+      },
+      "G6": {
+        "i7": "ACTGGCCTAA",
+        "i5_a": "CGCTCCCTTG",
+        "i5_b": "CAAGGGAGCG"
+      },
+      "G7": {
+        "i7": "TCATAATGCA",
+        "i5_a": "GATGAGGCGA",
+        "i5_b": "TCGCCTCATC"
+      },
+      "G8": {
+        "i7": "CGCCACGTTA",
+        "i5_a": "CTTTCATAGG",
+        "i5_b": "CCTATGAAAG"
+      },
+      "G9": {
+        "i7": "TGGACTAAGC",
+        "i5_a": "CTTAACATCG",
+        "i5_b": "CGATGTTAAG"
+      },
+      "G10": {
+        "i7": "AAGCCCGGCA",
+        "i5_a": "GAGTTTCCGT",
+        "i5_b": "ACGGAAACTC"
+      },
+      "G11": {
+        "i7": "ATAGTGGCGG",
+        "i5_a": "TACTGTTGTT",
+        "i5_b": "AACAACAGTA"
+      },
+      "G12": {
+        "i7": "CCAACCGGAC",
+        "i5_a": "GTTCTATCTA",
+        "i5_b": "TAGATAGAAC"
+      },
+      "H1": {
+        "i7": "TTACAGAGGG",
+        "i5_a": "GTTTATGGCA",
+        "i5_b": "TGCCATAAAC"
+      },
+      "H2": {
+        "i7": "TCCAACAACG",
+        "i5_a": "GTCCGGGTTT",
+        "i5_b": "AAACCCGGAC"
+      },
+      "H3": {
+        "i7": "AAAGCATGTC",
+        "i5_a": "AGATACTACT",
+        "i5_b": "AGTAGTATCT"
+      },
+      "H4": {
+        "i7": "AGAAGTCGTT",
+        "i5_a": "AGGACATTTA",
+        "i5_b": "TAAATGTCCT"
+      },
+      "H5": {
+        "i7": "GCTAGCGTTC",
+        "i5_a": "TCGCGTGGTG",
+        "i5_b": "CACCACGCGA"
+      },
+      "H6": {
+        "i7": "CAACTAGCTT",
+        "i5_a": "TCAACTAATC",
+        "i5_b": "GATTAGTTGA"
+      },
+      "H7": {
+        "i7": "AGGGCCAGTT",
+        "i5_a": "TAGGGCAAAT",
+        "i5_b": "ATTTGCCCTA"
+      },
+      "H8": {
+        "i7": "CTCTATGCGT",
+        "i5_a": "CCTCTGATGC",
+        "i5_b": "GCATCAGAGG"
+      },
+      "H9": {
+        "i7": "GTCCATACAA",
+        "i5_a": "AGCCACTCAC",
+        "i5_b": "GTGAGTGGCT"
+      },
+      "H10": {
+        "i7": "AGGGATGCAA",
+        "i5_a": "CTCATATCCT",
+        "i5_b": "AGGATATGAG"
+      },
+      "H11": {
+        "i7": "TTCAAGTCCT",
+        "i5_a": "CAGCAGCTAA",
+        "i5_b": "TTAGCTGCTG"
+      },
+      "H12": {
+        "i7": "CTCCAACCTA",
+        "i5_a": "GCACCGCATC",
+        "i5_b": "GATGCGGTGC"
+      }
+    }
+  },
+  "NT-A": {
+    "name": "Single Cell 3' Dual Index Kit NT Set A",
+    "pn": [
+      "1000242"
+    ],
+    "wells": {
+      "A1": {
+        "i7": "ATTTACCGCA",
+        "i5_a": "GACAATAAAG",
+        "i5_b": "CTTTATTGTC"
+      },
+      "A2": {
+        "i7": "TTGTCGTAGA",
+        "i5_a": "CAATGTAGCA",
+        "i5_b": "TGCTACATTG"
+      },
+      "A3": {
+        "i7": "AGTCCTGCGG",
+        "i5_a": "TGACACAAGT",
+        "i5_b": "ACTTGTGTCA"
+      },
+      "A4": {
+        "i7": "TTGTTCATGT",
+        "i5_a": "TGACAGCTGA",
+        "i5_b": "TCAGCTGTCA"
+      },
+      "A5": {
+        "i7": "TCAGGAAGGA",
+        "i5_a": "GAACGTGCTT",
+        "i5_b": "AAGCACGTTC"
+      },
+      "A6": {
+        "i7": "CTGTTAGAGG",
+        "i5_a": "CCACGCTTCG",
+        "i5_b": "CGAAGCGTGG"
+      },
+      "A7": {
+        "i7": "AGATGAGAAT",
+        "i5_a": "GTCGACGGGT",
+        "i5_b": "ACCCGTCGAC"
+      },
+      "A8": {
+        "i7": "CCAAAGCCGG",
+        "i5_a": "ACCGTGCACA",
+        "i5_b": "TGTGCACGGT"
+      },
+      "A9": {
+        "i7": "AGTCATAATG",
+        "i5_a": "AGGCTTGAAA",
+        "i5_b": "TTTCAAGCCT"
+      },
+      "A10": {
+        "i7": "TTCATCAGAG",
+        "i5_a": "TTGTCGTCTC",
+        "i5_b": "GAGACGACAA"
+      },
+      "A11": {
+        "i7": "GAAGCGCGAA",
+        "i5_a": "CAGCGAAATT",
+        "i5_b": "AATTTCGCTG"
+      },
+      "A12": {
+        "i7": "ATCCGCCGAA",
+        "i5_a": "GCTACAGAAT",
+        "i5_b": "ATTCTGTAGC"
+      },
+      "B1": {
+        "i7": "CTTATTGTGG",
+        "i5_a": "AGCTGTGGGT",
+        "i5_b": "ACCCACAGCT"
+      },
+      "B2": {
+        "i7": "ATTCGTTGGG",
+        "i5_a": "CATCAGGAGC",
+        "i5_b": "GCTCCTGATG"
+      },
+      "B3": {
+        "i7": "GTGGCCTCAT",
+        "i5_a": "TCGAAAGTGA",
+        "i5_b": "TCACTTTCGA"
+      },
+      "B4": {
+        "i7": "CTATGGCATC",
+        "i5_a": "CTCTGAGCGC",
+        "i5_b": "GCGCTCAGAG"
+      },
+      "B5": {
+        "i7": "AAACCACAGT",
+        "i5_a": "CCGCAAATGG",
+        "i5_b": "CCATTTGCGG"
+      },
+      "B6": {
+        "i7": "ATGTATCCAC",
+        "i5_a": "CAGGCTGAGG",
+        "i5_b": "CCTCAGCCTG"
+      },
+      "B7": {
+        "i7": "GATGAGTCTG",
+        "i5_a": "TATGTAACCG",
+        "i5_b": "CGGTTACATA"
+      },
+      "B8": {
+        "i7": "CTCACAATAA",
+        "i5_a": "CCGTGTTTAA",
+        "i5_b": "TTAAACACGG"
+      },
+      "B9": {
+        "i7": "TCTGTCGCAA",
+        "i5_a": "ATCCGAACTG",
+        "i5_b": "CAGTTCGGAT"
+      },
+      "B10": {
+        "i7": "CATCGAGAAG",
+        "i5_a": "GTGCATCCGC",
+        "i5_b": "GCGGATGCAC"
+      },
+      "B11": {
+        "i7": "ACGTATTGGG",
+        "i5_a": "CAATCGCAAA",
+        "i5_b": "TTTGCGATTG"
+      },
+      "B12": {
+        "i7": "CTTACGCGAC",
+        "i5_a": "CCTGTCGGAT",
+        "i5_b": "ATCCGACAGG"
+      },
+      "C1": {
+        "i7": "GATAGTGAAG",
+        "i5_a": "CGTTCGCCAG",
+        "i5_b": "CTGGCGAACG"
+      },
+      "C2": {
+        "i7": "CTGTGCAATG",
+        "i5_a": "ATGGTGCTTT",
+        "i5_b": "AAAGCACCAT"
+      },
+      "C3": {
+        "i7": "AAAGCTGAGC",
+        "i5_a": "CAGGAACGAG",
+        "i5_b": "CTCGTTCCTG"
+      },
+      "C4": {
+        "i7": "GTCCAAGTCG",
+        "i5_a": "GTCATGGCAC",
+        "i5_b": "GTGCCATGAC"
+      },
+      "C5": {
+        "i7": "GATTTCCATC",
+        "i5_a": "CTTATGGTCA",
+        "i5_b": "TGACCATAAG"
+      },
+      "C6": {
+        "i7": "CTAAATGGAT",
+        "i5_a": "AATCACATAC",
+        "i5_b": "GTATGTGATT"
+      },
+      "C7": {
+        "i7": "ATTTCAGTTC",
+        "i5_a": "GCAGCATTAA",
+        "i5_b": "TTAATGCTGC"
+      },
+      "C8": {
+        "i7": "TTGCGACGTC",
+        "i5_a": "TTAATCCACA",
+        "i5_b": "TGTGGATTAA"
+      },
+      "C9": {
+        "i7": "GTACTGTCCA",
+        "i5_a": "TTTGTTGGAA",
+        "i5_b": "TTCCAACAAA"
+      },
+      "C10": {
+        "i7": "AAACGGTTTA",
+        "i5_a": "TCTTCGTTAC",
+        "i5_b": "GTAACGAAGA"
+      },
+      "C11": {
+        "i7": "CGATAGTTCT",
+        "i5_a": "GCGATTTCCT",
+        "i5_b": "AGGAAATCGC"
+      },
+      "C12": {
+        "i7": "TACTTTAGCT",
+        "i5_a": "GAGTTATTTG",
+        "i5_b": "CAAATAACTC"
+      },
+      "D1": {
+        "i7": "CTGGGATTAA",
+        "i5_a": "AGTAAAGTTC",
+        "i5_b": "GAACTTTACT"
+      },
+      "D2": {
+        "i7": "TACACTATTC",
+        "i5_a": "ATTGCAACGT",
+        "i5_b": "ACGTTGCAAT"
+      },
+      "D3": {
+        "i7": "AGAGCTATTT",
+        "i5_a": "CTGGCACCCA",
+        "i5_b": "TGGGTGCCAG"
+      },
+      "D4": {
+        "i7": "AGGTCGTTAT",
+        "i5_a": "AGGTTATCCA",
+        "i5_b": "TGGATAACCT"
+      },
+      "D5": {
+        "i7": "GCTGGACAGG",
+        "i5_a": "TAATCTCTGT",
+        "i5_b": "ACAGAGATTA"
+      },
+      "D6": {
+        "i7": "ACTTAGATGG",
+        "i5_a": "AATGTTGAGT",
+        "i5_b": "ACTCAACATT"
+      },
+      "D7": {
+        "i7": "AGGCGCGAGT",
+        "i5_a": "TGTGTCTATA",
+        "i5_b": "TATAGACACA"
+      },
+      "D8": {
+        "i7": "GAGGTCGTAC",
+        "i5_a": "CAACTGCGGG",
+        "i5_b": "CCCGCAGTTG"
+      },
+      "D9": {
+        "i7": "CCCAATGAGC",
+        "i5_a": "AGTTTCTGAT",
+        "i5_b": "ATCAGAAACT"
+      },
+      "D10": {
+        "i7": "ACATTCAGGG",
+        "i5_a": "GTCCTGAGAG",
+        "i5_b": "CTCTCAGGAC"
+      },
+      "D11": {
+        "i7": "AGAAACGGTG",
+        "i5_a": "TCACCCAGCA",
+        "i5_b": "TGCTGGGTGA"
+      },
+      "D12": {
+        "i7": "AGTTGCAAGT",
+        "i5_a": "ATACTTCATG",
+        "i5_b": "CATGAAGTAT"
+      },
+      "E1": {
+        "i7": "GCCTAGAAAT",
+        "i5_a": "ACTACTCCGG",
+        "i5_b": "CCGGAGTAGT"
+      },
+      "E2": {
+        "i7": "TACAAAGATG",
+        "i5_a": "CCGATGACGT",
+        "i5_b": "ACGTCATCGG"
+      },
+      "E3": {
+        "i7": "GCAGGCTTAG",
+        "i5_a": "CGTCTATTGC",
+        "i5_b": "GCAATAGACG"
+      },
+      "E4": {
+        "i7": "CAGCTCCAAT",
+        "i5_a": "TAGGAGGGTG",
+        "i5_b": "CACCCTCCTA"
+      },
+      "E5": {
+        "i7": "TTTGGAGAAA",
+        "i5_a": "CAGCCCTTGA",
+        "i5_b": "TCAAGGGCTG"
+      },
+      "E6": {
+        "i7": "TGTCGCTTTC",
+        "i5_a": "CCTAAAGGGT",
+        "i5_b": "ACCCTTTAGG"
+      },
+      "E7": {
+        "i7": "GTGTTGCGAG",
+        "i5_a": "CACTTTGAGC",
+        "i5_b": "GCTCAAAGTG"
+      },
+      "E8": {
+        "i7": "GTCTGTTCTG",
+        "i5_a": "TCTGATGCTT",
+        "i5_b": "AAGCATCAGA"
+      },
+      "E9": {
+        "i7": "TCGCTCAATC",
+        "i5_a": "GCTTACGTGA",
+        "i5_b": "TCACGTAAGC"
+      },
+      "E10": {
+        "i7": "CGTTACTAGC",
+        "i5_a": "AATGGCCATT",
+        "i5_b": "AATGGCCATT"
+      },
+      "E11": {
+        "i7": "GTGCAGATTT",
+        "i5_a": "TAAAGGCGAT",
+        "i5_b": "ATCGCCTTTA"
+      },
+      "E12": {
+        "i7": "GTTACCGAAA",
+        "i5_a": "CGTTTGAATC",
+        "i5_b": "GATTCAAACG"
+      },
+      "F1": {
+        "i7": "CGGTATGGAA",
+        "i5_a": "TGCAACTGGT",
+        "i5_b": "ACCAGTTGCA"
+      },
+      "F2": {
+        "i7": "TCGGTTTAGT",
+        "i5_a": "TAAAGTGTTC",
+        "i5_b": "GAACACTTTA"
+      },
+      "F3": {
+        "i7": "CTTTGCTTTG",
+        "i5_a": "ACATTCATTC",
+        "i5_b": "GAATGAATGT"
+      },
+      "F4": {
+        "i7": "ATGATCGCAC",
+        "i5_a": "GCGGTATGTA",
+        "i5_b": "TACATACCGC"
+      },
+      "F5": {
+        "i7": "CGGCGTGTTA",
+        "i5_a": "TGAGACGCGG",
+        "i5_b": "CCGCGTCTCA"
+      },
+      "F6": {
+        "i7": "TCATTTCCGC",
+        "i5_a": "ACAGCTGTTG",
+        "i5_b": "CAACAGCTGT"
+      },
+      "F7": {
+        "i7": "TTGTGCCCAG",
+        "i5_a": "TTGCGAGTTG",
+        "i5_b": "CAACTCGCAA"
+      },
+      "F8": {
+        "i7": "AGCCAACGTG",
+        "i5_a": "TCAAAGGAAC",
+        "i5_b": "GTTCCTTTGA"
+      },
+      "F9": {
+        "i7": "GATCCATACT",
+        "i5_a": "ATCGAGAGAA",
+        "i5_b": "TTCTCTCGAT"
+      },
+      "F10": {
+        "i7": "TTTCCATGAA",
+        "i5_a": "CGGTTCTAAC",
+        "i5_b": "GTTAGAACCG"
+      },
+      "F11": {
+        "i7": "TCTTTATCGG",
+        "i5_a": "CCCAATAGCG",
+        "i5_b": "CGCTATTGGG"
+      },
+      "F12": {
+        "i7": "GAACCCGATG",
+        "i5_a": "TCTATCCGGG",
+        "i5_b": "CCCGGATAGA"
+      },
+      "G1": {
+        "i7": "GATGTCTGTG",
+        "i5_a": "CGTGCTACCG",
+        "i5_b": "CGGTAGCACG"
+      },
+      "G2": {
+        "i7": "TGTTAGACTA",
+        "i5_a": "TCATGACGAC",
+        "i5_b": "GTCGTCATGA"
+      },
+      "G3": {
+        "i7": "TAGAACGCTT",
+        "i5_a": "GTCGCAAACG",
+        "i5_b": "CGTTTGCGAC"
+      },
+      "G4": {
+        "i7": "AATTTGACGT",
+        "i5_a": "AGAAGTGAGG",
+        "i5_b": "CCTCACTTCT"
+      },
+      "G5": {
+        "i7": "GAGTGGCCAC",
+        "i5_a": "GATGCACAGT",
+        "i5_b": "ACTGTGCATC"
+      },
+      "G6": {
+        "i7": "ATCAGTTACG",
+        "i5_a": "TACAATCTCT",
+        "i5_b": "AGAGATTGTA"
+      },
+      "G7": {
+        "i7": "TGTAAGCTTT",
+        "i5_a": "CGGACTAGTC",
+        "i5_b": "GACTAGTCCG"
+      },
+      "G8": {
+        "i7": "GCTTCGGTCT",
+        "i5_a": "CGCGGGTTAG",
+        "i5_b": "CTAACCCGCG"
+      },
+      "G9": {
+        "i7": "AGTCTAAGAC",
+        "i5_a": "CTGAAGTGAA",
+        "i5_b": "TTCACTTCAG"
+      },
+      "G10": {
+        "i7": "TGAAACATTC",
+        "i5_a": "CCTCCTGCCT",
+        "i5_b": "AGGCAGGAGG"
+      },
+      "G11": {
+        "i7": "CCTCACGAAA",
+        "i5_a": "TGCCCTGTGC",
+        "i5_b": "GCACAGGGCA"
+      },
+      "G12": {
+        "i7": "CTACGGGCTT",
+        "i5_a": "AGGCGTCCCT",
+        "i5_b": "AGGGACGCCT"
+      },
+      "H1": {
+        "i7": "GCGGCGTAAA",
+        "i5_a": "CACGCGATCA",
+        "i5_b": "TGATCGCGTG"
+      },
+      "H2": {
+        "i7": "TCTCCTTCGG",
+        "i5_a": "TGTCCGTCGC",
+        "i5_b": "GCGACGGACA"
+      },
+      "H3": {
+        "i7": "CCTTACCCAT",
+        "i5_a": "TCCCGGCAAC",
+        "i5_b": "GTTGCCGGGA"
+      },
+      "H4": {
+        "i7": "AAGGAACATC",
+        "i5_a": "TATCTGTGGG",
+        "i5_b": "CCCACAGATA"
+      },
+      "H5": {
+        "i7": "GTGGGAACTT",
+        "i5_a": "GCACTTACAG",
+        "i5_b": "CTGTAAGTGC"
+      },
+      "H6": {
+        "i7": "ACCGCACCAC",
+        "i5_a": "TCGGATTATA",
+        "i5_b": "TATAATCCGA"
+      },
+      "H7": {
+        "i7": "ACCTTTATCT",
+        "i5_a": "CGAGTGCCAA",
+        "i5_b": "TTGGCACTCG"
+      },
+      "H8": {
+        "i7": "AGTAGCCCGT",
+        "i5_a": "TTCGGGACCT",
+        "i5_b": "AGGTCCCGAA"
+      },
+      "H9": {
+        "i7": "AGATAGCATA",
+        "i5_a": "CATTTCCGGA",
+        "i5_b": "TCCGGAAATG"
+      },
+      "H10": {
+        "i7": "TGGCGTTAAA",
+        "i5_a": "TGTTAAGATG",
+        "i5_b": "CATCTTAACA"
+      },
+      "H11": {
+        "i7": "TCAGGCGAAA",
+        "i5_a": "TCTCTGGAAG",
+        "i5_b": "CTTCCAGAGA"
+      },
+      "H12": {
+        "i7": "AAGACATAGC",
+        "i5_a": "ATGTGGACGT",
+        "i5_b": "ACGTCCACAT"
+      }
+    }
+  },
+  "TT-A": {
+    "name": "Single Cell 3' Dual Index Kit TT Set A",
+    "pn": [
+      "1000215",
+      "3000431"
+    ],
+    "wells": {
+      "A1": {
+        "i7": "GTAACATGCG",
+        "i5_a": "AGTGTTACCT",
+        "i5_b": "AGGTAACACT"
+      },
+      "A2": {
+        "i7": "GTGGATCAAA",
+        "i5_a": "GCCAACCCTG",
+        "i5_b": "CAGGGTTGGC"
+      },
+      "A3": {
+        "i7": "CACTACGAAA",
+        "i5_a": "TTAGACTGAT",
+        "i5_b": "ATCAGTCTAA"
+      },
+      "A4": {
+        "i7": "CTCTAGCGAG",
+        "i5_a": "TATCTTCATC",
+        "i5_b": "GATGAAGATA"
+      },
+      "A5": {
+        "i7": "GTAGCCCTGT",
+        "i5_a": "GAGCATCTAT",
+        "i5_b": "ATAGATGCTC"
+      },
+      "A6": {
+        "i7": "TAACGCGTGA",
+        "i5_a": "CCCTAACTTC",
+        "i5_b": "GAAGTTAGGG"
+      },
+      "A7": {
+        "i7": "TCCCAAGGGT",
+        "i5_a": "TACTACCTTT",
+        "i5_b": "AAAGGTAGTA"
+      },
+      "A8": {
+        "i7": "CGAAGTATAC",
+        "i5_a": "GAACTTGGAG",
+        "i5_b": "CTCCAAGTTC"
+      },
+      "A9": {
+        "i7": "AAGTGGAGAG",
+        "i5_a": "TTCCTGTTAC",
+        "i5_b": "GTAACAGGAA"
+      },
+      "A10": {
+        "i7": "CGTGACATGC",
+        "i5_a": "ATGGTCTAAA",
+        "i5_b": "TTTAGACCAT"
+      },
+      "A11": {
+        "i7": "CGGAACCCAA",
+        "i5_a": "GATTCGAGGA",
+        "i5_b": "TCCTCGAATC"
+      },
+      "A12": {
+        "i7": "CACCGCACCA",
+        "i5_a": "GACTGTCAAT",
+        "i5_b": "ATTGACAGTC"
+      },
+      "B1": {
+        "i7": "ACAGTAACTA",
+        "i5_a": "ACAGTTCGTT",
+        "i5_b": "AACGAACTGT"
+      },
+      "B2": {
+        "i7": "TCTACCATTT",
+        "i5_a": "CGGGAGAGTC",
+        "i5_b": "GACTCTCCCG"
+      },
+      "B3": {
+        "i7": "CACGGTGAAT",
+        "i5_a": "GTTCGTCACA",
+        "i5_b": "TGTGACGAAC"
+      },
+      "B4": {
+        "i7": "GTAGACGAAA",
+        "i5_a": "CTAGTGTGGT",
+        "i5_b": "ACCACACTAG"
+      },
+      "B5": {
+        "i7": "TCGGCTCTAC",
+        "i5_a": "CCGATGGTCT",
+        "i5_b": "AGACCATCGG"
+      },
+      "B6": {
+        "i7": "AATGCCATGA",
+        "i5_a": "TACGTAATGC",
+        "i5_b": "GCATTACGTA"
+      },
+      "B7": {
+        "i7": "GCCTTCGGTA",
+        "i5_a": "CCAACGATTT",
+        "i5_b": "AAATCGTTGG"
+      },
+      "B8": {
+        "i7": "GCACTGAGAA",
+        "i5_a": "TATGCGTGAA",
+        "i5_b": "TTCACGCATA"
+      },
+      "B9": {
+        "i7": "TATTGAGGCA",
+        "i5_a": "CAGGTAAGTG",
+        "i5_b": "CACTTACCTG"
+      },
+      "B10": {
+        "i7": "GCCCGATGGA",
+        "i5_a": "AATCGTCTAG",
+        "i5_b": "CTAGACGATT"
+      },
+      "B11": {
+        "i7": "TCTTACTTGC",
+        "i5_a": "TGACCTCTAG",
+        "i5_b": "CTAGAGGTCA"
+      },
+      "B12": {
+        "i7": "CGTCAAGGGC",
+        "i5_a": "TAGGTCACTC",
+        "i5_b": "GAGTGACCTA"
+      },
+      "C1": {
+        "i7": "TGCGCGGTTT",
+        "i5_a": "CAAGGATAAA",
+        "i5_b": "TTTATCCTTG"
+      },
+      "C2": {
+        "i7": "CAATCCCGAC",
+        "i5_a": "CCGAGTAGTA",
+        "i5_b": "TACTACTCGG"
+      },
+      "C3": {
+        "i7": "ATGGCTTGTG",
+        "i5_a": "GAATGTTGTG",
+        "i5_b": "CACAACATTC"
+      },
+      "C4": {
+        "i7": "TTCTCGATGA",
+        "i5_a": "TGTCGGGCAC",
+        "i5_b": "GTGCCCGACA"
+      },
+      "C5": {
+        "i7": "TCCGTTGGAT",
+        "i5_a": "ACGTTCTCGC",
+        "i5_b": "GCGAGAACGT"
+      },
+      "C6": {
+        "i7": "ACGACTACCA",
+        "i5_a": "ACGACCCTAA",
+        "i5_b": "TTAGGGTCGT"
+      },
+      "C7": {
+        "i7": "CGCGCACTTA",
+        "i5_a": "CCTGTATTCT",
+        "i5_b": "AGAATACAGG"
+      },
+      "C8": {
+        "i7": "GCTACAAAGC",
+        "i5_a": "CACGTGCCCT",
+        "i5_b": "AGGGCACGTG"
+      },
+      "C9": {
+        "i7": "TATCAGCCTA",
+        "i5_a": "GTTTCGTCCT",
+        "i5_b": "AGGACGAAAC"
+      },
+      "C10": {
+        "i7": "AGAATGGTTT",
+        "i5_a": "GAGGGTGGGA",
+        "i5_b": "TCCCACCCTC"
+      },
+      "C11": {
+        "i7": "ATGGGTGAAA",
+        "i5_a": "CTTGGGAATT",
+        "i5_b": "AATTCCCAAG"
+      },
+      "C12": {
+        "i7": "TCGTCAAGAT",
+        "i5_a": "GCAACTCAGG",
+        "i5_b": "CCTGAGTTGC"
+      },
+      "D1": {
+        "i7": "TGCAATGTTC",
+        "i5_a": "GCTTGTCGAA",
+        "i5_b": "TTCGACAAGC"
+      },
+      "D2": {
+        "i7": "TTAATACGCG",
+        "i5_a": "CACCTCGGGT",
+        "i5_b": "ACCCGAGGTG"
+      },
+      "D3": {
+        "i7": "CCTTCTAGAG",
+        "i5_a": "AATACAACGA",
+        "i5_b": "TCGTTGTATT"
+      },
+      "D4": {
+        "i7": "GCAGTATAGG",
+        "i5_a": "TTCCGTGCAC",
+        "i5_b": "GTGCACGGAA"
+      },
+      "D5": {
+        "i7": "TGGTTCGGGT",
+        "i5_a": "GTGGCAGGAG",
+        "i5_b": "CTCCTGCCAC"
+      },
+      "D6": {
+        "i7": "CCCAGCTTCT",
+        "i5_a": "GACACCAAAC",
+        "i5_b": "GTTTGGTGTC"
+      },
+      "D7": {
+        "i7": "CCTGTCAGGG",
+        "i5_a": "AGCCCGTAAC",
+        "i5_b": "GTTACGGGCT"
+      },
+      "D8": {
+        "i7": "CGCTGAAATC",
+        "i5_a": "AGGTGTCTGC",
+        "i5_b": "GCAGACACCT"
+      },
+      "D9": {
+        "i7": "TGGTCCCAAG",
+        "i5_a": "CCTCTGGCGT",
+        "i5_b": "ACGCCAGAGG"
+      },
+      "D10": {
+        "i7": "ATGCGAATGG",
+        "i5_a": "ACAAGTGTCG",
+        "i5_b": "CGACACTTGT"
+      },
+      "D11": {
+        "i7": "CGAATATTCG",
+        "i5_a": "CTGGAAGCAA",
+        "i5_b": "TTGCTTCCAG"
+      },
+      "D12": {
+        "i7": "GAATTGGTTA",
+        "i5_a": "ACTCTAGTAG",
+        "i5_b": "CTACTAGAGT"
+      },
+      "E1": {
+        "i7": "TTATTCGAGG",
+        "i5_a": "CTGTCCTGCT",
+        "i5_b": "AGCAGGACAG"
+      },
+      "E2": {
+        "i7": "ATGGAGGGAG",
+        "i5_a": "ATAACCCATT",
+        "i5_b": "AATGGGTTAT"
+      },
+      "E3": {
+        "i7": "ACCAGACAAC",
+        "i5_a": "AGGAACTAGG",
+        "i5_b": "CCTAGTTCCT"
+      },
+      "E4": {
+        "i7": "AACCACGCAT",
+        "i5_a": "ATTCAGGTTA",
+        "i5_b": "TAACCTGAAT"
+      },
+      "E5": {
+        "i7": "CGCGGTAGGT",
+        "i5_a": "CAGGATGTTG",
+        "i5_b": "CAACATCCTG"
+      },
+      "E6": {
+        "i7": "TTGAGAGTCA",
+        "i5_a": "AACCTGGTAG",
+        "i5_b": "CTACCAGGTT"
+      },
+      "E7": {
+        "i7": "GTCCTTCGGC",
+        "i5_a": "TCATGCACAG",
+        "i5_b": "CTGTGCATGA"
+      },
+      "E8": {
+        "i7": "GAGCAAGGGC",
+        "i5_a": "ATTGACTTGG",
+        "i5_b": "CCAAGTCAAT"
+      },
+      "E9": {
+        "i7": "TGTCCCAACG",
+        "i5_a": "TCGATGTCCA",
+        "i5_b": "TGGACATCGA"
+      },
+      "E10": {
+        "i7": "CACAATCCCA",
+        "i5_a": "ATATCCACAA",
+        "i5_b": "TTGTGGATAT"
+      },
+      "E11": {
+        "i7": "TCCGGGACAA",
+        "i5_a": "GTGAATGCCA",
+        "i5_b": "TGGCATTCAC"
+      },
+      "E12": {
+        "i7": "CGTCCACCTG",
+        "i5_a": "CATTCATGAC",
+        "i5_b": "GTCATGAATG"
+      },
+      "F1": {
+        "i7": "AAGATTGGAT",
+        "i5_a": "AGCGGGATTT",
+        "i5_b": "AAATCCCGCT"
+      },
+      "F2": {
+        "i7": "AAGGGCCGCA",
+        "i5_a": "CTGATTCCTC",
+        "i5_b": "GAGGAATCAG"
+      },
+      "F3": {
+        "i7": "GAGAGGATAT",
+        "i5_a": "TTGAAATGGG",
+        "i5_b": "CCCATTTCAA"
+      },
+      "F4": {
+        "i7": "CCCACCACAA",
+        "i5_a": "ACCTCCGCTT",
+        "i5_b": "AAGCGGAGGT"
+      },
+      "F5": {
+        "i7": "CGGCTGGATG",
+        "i5_a": "TGATAAGCAC",
+        "i5_b": "GTGCTTATCA"
+      },
+      "F6": {
+        "i7": "TTGCCCGTGC",
+        "i5_a": "GCGTGAGATT",
+        "i5_b": "AATCTCACGC"
+      },
+      "F7": {
+        "i7": "AATGTATCCA",
+        "i5_a": "AATGAGCTTA",
+        "i5_b": "TAAGCTCATT"
+      },
+      "F8": {
+        "i7": "CTCCTTTAGA",
+        "i5_a": "GACATAGCTC",
+        "i5_b": "GAGCTATGTC"
+      },
+      "F9": {
+        "i7": "GTCCCATCAA",
+        "i5_a": "CGAACGTGAC",
+        "i5_b": "GTCACGTTCG"
+      },
+      "F10": {
+        "i7": "CCGGCAACTG",
+        "i5_a": "CGGTTTAACA",
+        "i5_b": "TGTTAAACCG"
+      },
+      "F11": {
+        "i7": "TTCACACCTT",
+        "i5_a": "TAGTGTACAC",
+        "i5_b": "GTGTACACTA"
+      },
+      "F12": {
+        "i7": "GAGACGCACG",
+        "i5_a": "CTATGAACAT",
+        "i5_b": "ATGTTCATAG"
+      },
+      "G1": {
+        "i7": "TGTAGTCATT",
+        "i5_a": "CTTGATCGTA",
+        "i5_b": "TACGATCAAG"
+      },
+      "G2": {
+        "i7": "CATGTGGGTT",
+        "i5_a": "GATTCCTTTA",
+        "i5_b": "TAAAGGAATC"
+      },
+      "G3": {
+        "i7": "ATGACGTCGC",
+        "i5_a": "AGGTCAGGAT",
+        "i5_b": "ATCCTGACCT"
+      },
+      "G4": {
+        "i7": "GCGCTTATGG",
+        "i5_a": "GCCTGGCTAG",
+        "i5_b": "CTAGCCAGGC"
+      },
+      "G5": {
+        "i7": "ATAGGGCGAG",
+        "i5_a": "TGCATCGAGT",
+        "i5_b": "ACTCGATGCA"
+      },
+      "G6": {
+        "i7": "GCGGGTAAGT",
+        "i5_a": "TAGCACTAAG",
+        "i5_b": "CTTAGTGCTA"
+      },
+      "G7": {
+        "i7": "GTTTCACGAT",
+        "i5_a": "TTCGGCCAAA",
+        "i5_b": "TTTGGCCGAA"
+      },
+      "G8": {
+        "i7": "TAAGCAACTG",
+        "i5_a": "CTATACTCAA",
+        "i5_b": "TTGAGTATAG"
+      },
+      "G9": {
+        "i7": "CCGGAGGAAG",
+        "i5_a": "TGCGGATGTT",
+        "i5_b": "AACATCCGCA"
+      },
+      "G10": {
+        "i7": "ACTTTACGTG",
+        "i5_a": "TGAACGCCCT",
+        "i5_b": "AGGGCGTTCA"
+      },
+      "G11": {
+        "i7": "GATAACCTGC",
+        "i5_a": "CATTAGAAAC",
+        "i5_b": "GTTTCTAATG"
+      },
+      "G12": {
+        "i7": "CTTGCATAAA",
+        "i5_a": "ATCAGGGCTT",
+        "i5_b": "AAGCCCTGAT"
+      },
+      "H1": {
+        "i7": "ACAATGTGAA",
+        "i5_a": "CGTACCGTTA",
+        "i5_b": "TAACGGTACG"
+      },
+      "H2": {
+        "i7": "TAGCATAGTG",
+        "i5_a": "CGGCTCTGTC",
+        "i5_b": "GACAGAGCCG"
+      },
+      "H3": {
+        "i7": "CCCGTTCTCG",
+        "i5_a": "GACGGATTGG",
+        "i5_b": "CCAATCCGTC"
+      },
+      "H4": {
+        "i7": "AGTTTCCTGG",
+        "i5_a": "TGCCACACAG",
+        "i5_b": "CTGTGTGGCA"
+      },
+      "H5": {
+        "i7": "AGCAAGAAGC",
+        "i5_a": "TTGTGTTTCT",
+        "i5_b": "AGAAACACAA"
+      },
+      "H6": {
+        "i7": "CCTATCCTCG",
+        "i5_a": "GAATACTAAC",
+        "i5_b": "GTTAGTATTC"
+      },
+      "H7": {
+        "i7": "ACCTCGAGCT",
+        "i5_a": "TGTGTTCGAT",
+        "i5_b": "ATCGAACACA"
+      },
+      "H8": {
+        "i7": "ATAAGGATAC",
+        "i5_a": "ATAGATAGGG",
+        "i5_b": "CCCTATCTAT"
+      },
+      "H9": {
+        "i7": "AGAACTTAGA",
+        "i5_a": "CGAGTCCTTT",
+        "i5_b": "AAAGGACTCG"
+      },
+      "H10": {
+        "i7": "TTATCTAGGG",
+        "i5_a": "AAAGGCTCTA",
+        "i5_b": "TAGAGCCTTT"
+      },
+      "H11": {
+        "i7": "ACAATCGATC",
+        "i5_a": "TGACGGAATG",
+        "i5_b": "CATTCCGTCA"
+      },
+      "H12": {
+        "i7": "TGATGATTCA",
+        "i5_a": "GTAGGAGTCG",
+        "i5_b": "CGACTCCTAC"
+      }
+    }
+  }
+}

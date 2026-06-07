@@ -13,6 +13,7 @@ import { applyRC, previewIndices, revcomp } from '../core/revcomp.js';
 import { suggestOverride, validateOverride } from '../core/cycles.js';
 import { prefixMatch, applySubstitutions } from '../core/rescue.js';
 import { discoverBclConvert, getBclVersion, getDeclaredSoftwareVersion } from '../core/bcl-convert.js';
+import { loadKits, detectKit } from '../core/kits-10x.js';
 
 import {
   serializeSampleSheet,
@@ -64,6 +65,9 @@ export async function runInit(rundir, opts = {}) {
   // Header + summary
   process.stdout.write(header(`demux init`, `${runInfo.runId}`));
   process.stdout.write(runSummary(runInfo, samplesheet) + '\n\n');
+
+  // 10x kit fingerprint — purely informational + mismatch warning
+  await reportKitDetection(samplesheet);
 
   // Step 2: bcl-convert selection
   console.log(step(2, TOTAL_STEPS, 'bcl-convert binary'));
@@ -527,6 +531,44 @@ function reportVersionMatch(declared, installed) {
   } else {
     console.log(`  ${sym.warn} version mismatch: samplesheet says ${c.bold(declared)}, installed is ${c.bold(installed)}`);
   }
+}
+
+async function reportKitDetection(samplesheet) {
+  await loadKits();
+  const detections = detectKit(samplesheet.data);
+  if (detections.length === 0) return;
+  const top = detections[0];
+  const perfect = top.matched === top.total;
+  const partial = !perfect && top.matched / top.total >= 0.3;
+  if (!perfect && !partial) return;
+
+  const tag = perfect ? c.ok(`✓ ${top.matched}/${top.total}`) : c.warn(`! ${top.matched}/${top.total}`);
+  console.log(`${sym.info} 10x kit: ${c.bold(top.id)} workflow ${top.workflow}  ${c.muted(top.name)}  ${tag}`);
+
+  // Mismatch warning: if Sample_IDs encode an SI-XX-* kit name that disagrees with detection.
+  const declared = inferDeclaredKitFromSampleIds(samplesheet.data);
+  if (declared && declared !== top.id.split('-')[0]) {
+    console.log(`  ${sym.warn} ${c.bold(`Sample_IDs mention "${declared}" but barcodes are from ${top.id.split('-')[0]}`)}`);
+    console.log(`  ${c.dim('if this is a mistake, fix with:')} ${c.cyan('demux fix-indices ./<state-dir> --to-kit ' + declared + '-A')}`);
+  }
+  if (!perfect) {
+    console.log(`  ${c.dim(`${top.total - top.matched} row(s) did not match this kit; review the samplesheet`)}`);
+  }
+  console.log('');
+}
+
+function inferDeclaredKitFromSampleIds(rows) {
+  const cols = Object.keys(rows[0] ?? {});
+  const idCol = cols.find((k) => k.toLowerCase() === 'sample_id') ?? 'Sample_ID';
+  const tally = new Map();
+  for (const r of rows) {
+    const id = String(r[idCol] ?? '');
+    const m = id.match(/SI-([A-Z]{2})-/i);
+    if (m) tally.set(m[1].toUpperCase(), (tally.get(m[1].toUpperCase()) ?? 0) + 1);
+  }
+  if (tally.size === 0) return null;
+  const [top] = [...tally.entries()].sort((a, b) => b[1] - a[1]);
+  return top[0];
 }
 
 function handlePerLaneOverrideCycles(rows) {
